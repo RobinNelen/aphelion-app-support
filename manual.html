@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aphelion manual</title>
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; color: #e8e6e1;
+      background: radial-gradient(1200px 600px at 50% -200px, #1d2433 0%, #0a0b0f 60%) fixed, #0a0b0f; }
+    header { text-align: center; padding: 3rem 1.25rem 1rem; }
+    header img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 10px 40px rgba(120,160,255,.25); }
+    header .brand { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; letter-spacing: .02em; margin: .8rem 0 .2rem; color: #fff; }
+    header .tag { color: #8b93a3; font-size: .95rem; margin: 0; }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; }
+    nav a { color: #e8e6e1; text-decoration: none; padding: .45rem 1rem; border-radius: 999px; border: 1px solid #2a2f3a; font-size: .95rem; }
+    nav a.on, nav a:hover { background: #f1efe9; color: #0a0b0f; border-color: #f1efe9; }
+    main { max-width: 48rem; margin: 1.5rem auto 3rem; padding: 2rem 1.75rem; background: rgba(20,22,28,.75); border: 1px solid #22262f; border-radius: 20px; }
+    h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 .4rem; color: #fff; }
+    h2 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; color: #fff; letter-spacing: .01em; }
+    h3 { font-size: 1rem; margin: 1.15rem 0 .3rem; color: #fff; }
+    p { margin: .45rem 0; }
+    a { color: #9cc3ff; }
+    code { background: #1a1d24; padding: .1rem .35rem; border-radius: 6px; font-size: .9em; }
+    .meta { color: #8b93a3; font-size: .95rem; }
+    footer { text-align: center; color: #5f6675; font-size: .85rem; padding: 0 1rem 2.5rem; }
+    .toc, .toc ul { list-style: none; margin: .2rem 0 .4rem; padding: 0; }
+    .toc ul { margin-left: 1rem; }
+    .toc li { margin: .15rem 0; }
+    details { margin: 1.1rem 0; border-top: 1px solid #22262f; padding-top: .7rem; }
+    summary { cursor: pointer; color: #fff; font-size: 1.15rem; }
+    ol, ul.tips { margin: .3rem 0 .6rem; padding-left: 1.2rem; }
+    figure { margin: .7rem 0 0; }
+    figure img { width: 100%; height: auto; border-radius: 12px; border: 1px solid #22262f; background: #0a0b0f; }
+    figcaption { color: #8b93a3; font-size: .85rem; margin-top: .3rem; }
+    .pair { display: grid; gap: .8rem; }
+    @media (min-width: 800px) { .pair { grid-template-columns: 1.35fr .75fr; align-items: start; } }
+    @media (max-width: 480px) { main { margin: 1rem .75rem 2rem; padding: 1.25rem 1rem; } header { padding-top: 1.5rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icon.png" alt="Aphelion app icon">
+    <div class="brand">Aphelion</div>
+    <p class="tag">Fly real orbits. Learn real physics.</p>
+    <nav><a href="manual.html" class="on">Manual</a><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
+  </header>
+  <main>
+    <h1>Manual</h1>
+    <p class="meta">Fourteen lessons. The words below are the ones in the game. The pictures are from the iPhone 17e Simulator.</p>
+    <p>Career is the fourteen lessons, in order. Flight is the same pad with no mission. Sandbox is for throwing planets, and it keeps no score. On the mission board, tap a lesson, then its button. How this works opens the long page for that lesson. How to play opens the short page.</p>
+
+    <h2>Contents</h2>
+    <ul class="toc">
+      <li><a href="#controls">Controls</a></li>
+      <li>Fly. Watch the rocket. Then you fly it.
+        <ul>
+          <li><a href="#first-orbit">First orbit</a></li>
+          <li><a href="#deploy">Deploy</a></li>
+          <li><a href="#belly-flop">Belly flop</a></li>
+        </ul>
+      </li>
+      <li>Classroom. See the orbit. Then you pick it.
+        <ul>
+          <li><a href="#tilt-to-the-station">Tilt to the station</a></li>
+          <li><a href="#polar">Polar</a></li>
+          <li><a href="#dawn-dusk">Dawn-dusk</a></li>
+          <li><a href="#hangs-still">Hangs still</a></li>
+          <li><a href="#the-long-ellipse">The long ellipse</a></li>
+          <li><a href="#navigation-belt">Navigation belt</a></li>
+          <li><a href="#linger-up-high">Linger up high</a></li>
+        </ul>
+      </li>
+      <li>Voyage. Watch both burns. Then you do them.
+        <ul>
+          <li><a href="#to-the-moon">To the Moon</a></li>
+          <li><a href="#burn-home">Burn home</a></li>
+          <li><a href="#to-mars">To Mars</a></li>
+          <li><a href="#home-from-mars">Home from Mars</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <figure>
+      <img src="img/iphone-board.webp" alt="iPhone. The Aphelion mission board, with the fourteen lessons.">
+      <figcaption>iPhone. The mission board.</figcaption>
+    </figure>
+
+    <details id="controls">
+      <summary>Controls</summary>
+      <p>iPhone, iPad, and Mac show the same buttons. On the Mac the app is the iPad app. A keyboard and a trackpad work there too.</p>
+      <h3>On the screen</h3>
+      <p>Ignite lights the engines. While they are lit the same button says Cut. East and West tip the nose. Follow the green mark when the lesson says prograde: that is the way you are already going. Deploy lets a satellite go. Stage separates. During the example the assist button says Example. On your turn it says Autopilot or Autopilot on. Autopilot on says: “Autopilot has the stick. It will park near 250 × 350 km and save the ship tank.” Autopilot off says: “Autopilot off. You have the stick.” You still get the points if Autopilot flies.</p>
+      <p>The time buttons are 1×, 4×, 16×, 32×, and 64×. 1× is the speed you watch and learn at. The higher ones are fast-forward. They only change how fast the picture moves. The rocket still flies by the same rules.</p>
+      <p>Ship, Booster, Pad, and Orbit jump to that view. Sats appears once the satellites are out. On a lesson that is not a rocket flight, the camera button reads Close up, or Orbit when the view is already close. A pinch, a mouse wheel, or a trackpad scroll up and down looks closer or wider, on a flight and on every other lesson. Two fingers slide the picture, and a sideways trackpad scroll does too. Tap the camera button to put the shot back. None of that changes the orbit. Pause stops the picture.</p>
+      <p>Close, Path, and North change how much of a long ellipse you see. Reset to pad starts the current flight again. Finished lessons and points stay, in one record on the device, <code>aphelion-career-v1</code>.</p>
+      <p>My turn leaves the example and starts your try. Watch, Coach, and By hand are the other lesson buttons. Retry starts that try again. Hold to burn is the voyage button. While you hold it, the label says Burning.</p>
+      <h3>Keyboard</h3>
+      <p>Space pauses. In a flight, A or the left arrow steers one way and D or the right arrow the other. The game flips that pair from the camera, so a positive steer tips the nose toward the left of the screen. The buttons labeled East and West are the ones that name a compass direction. W, Z, or the up arrow sets the throttle to full. Shift raises it gradually. S, X, the down arrow, or Control lowers it. Q turns prograde on or off, E radial, R retrograde. J stages, and does nothing during the example. N deploys. L launches. Plus and minus, or the numpad, change the time. On a lesson that clock stays between 1× and 64×. F toggles follow. T toggles trails.</p>
+    </details>
+
+    <details id="first-orbit">
+      <summary>First orbit</summary>
+      <p class="meta">Fly · 200 points · button To the pad</p>
+      <h3>Goal</h3>
+      <p>Park near 250 × 350 km. A little error is fine. Leave fuel in the ship — that tank is for the rest of the flight.</p>
+      <h3>How the game marks it done</h3>
+      <p>The ship is off the ground, above 150 km, on a closed path. Perigee is at least 220 km. Apogee is under 700 km. The gap between them is under 120 km. At least 0.8 km/s is still in the ship, and the throttle is under 0.2. A tighter cut is named Precise when the gap is under 90 km, perigee is from 220 to 450 km, apogee is at most 520 km, and at least 2 km/s is left. The points come when you finish, not when the example does.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap First orbit, then To the pad. The example flies first. Its opening line is: “The Earth number up here is the free ~465 m/s east at the equator. The stack lifts off, eases off at Max Q, then stages with fuel still in the booster. Choose a time, then watch.” Press Watch if it is waiting.</li>
+        <li>Press My turn. The card says: “Your turn. Park near 250 × 350 km and leave fuel in the ship. Pitch east, or Autopilot.”</li>
+        <li>Go straight up, then tip east. Sideways speed is what makes the orbit. The flight strip reads “1 Burn up”, “2 Cut &amp; coast”, and “3 Burn at the top”.</li>
+        <li>Turn the engine off when the top is about 350 km, and coast. The game shows CUT NOW when that moment is here.</li>
+        <li>At the top, turn the orange nose onto the green prograde ring and burn. That lifts the low side. The game shows IGNITE NOW for that burn.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Go straight up through the thick air, then tip the nose east. Follow the green prograde mark, the way you are already going. When the high end is near 350 km, cut the engine and coast. At the top, point the nose forward and burn. That burn does not lift you higher. It lifts the low end, up to about 250 km, so the bottom stays above the air. Leave fuel in the ship. A little error is fine. Autopilot will fly this, and the points still count.</p>
+      <h3>For a teacher</h3>
+      <p>A Starship leaves the pad upright, then bends toward the east. The thick air is only the first minute. Where that air pushes hardest, Max Q, the engines ease off, then push again as it thins. After that, sideways speed is the whole job.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>“Impact. The stack hit Earth — reset the pad.”</li>
+        <li>“Orbit, but too high: … The top must stay under 700 km. Retry and cut on CUT NOW.”</li>
+        <li>“Orbit, but the bottom is low: … It must reach 220 km. Burn again on IGNITE NOW, or Retry.”</li>
+        <li>“Orbit, but too stretched: … Top and bottom must be within 120 km. Retry and cut on CUT NOW.”</li>
+        <li>“In orbit, but only … km/s left. First orbit needs 0.8 km/s still in the ship.” Cut earlier, or use Autopilot.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-first-orbit.webp" alt="iPhone. The First orbit lesson.">
+        <figcaption>iPhone. First orbit.</figcaption>
+      </figure>
+    </details>
+
+    <details id="deploy">
+      <summary>Deploy</summary>
+      <p class="meta">Fly · 90 points · button To the pad</p>
+      <h3>Goal</h3>
+      <p>The same parking orbit, then release the satellite. Arrive with fuel still in the ship.</p>
+      <h3>How the game marks it done</h3>
+      <p>A released satellite whose name starts with “Sat ” is on a closed path, and its perigee is above 100 km. While the bay is open the status is: “The bay is open. Starlinks leave one by one. sped up ×10”. When one is up, the status is “Satellite on station.”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Deploy, then To the pad. The example says: “Same climb. Once the orbit is round, the bay opens and the satellites leave. Choose a time, then watch.”</li>
+        <li>Press My turn. The card says: “Your turn. Same orbit, then Deploy. Keep fuel in the ship.”</li>
+        <li>Park in the same circle, with fuel still in the ship.</li>
+        <li>Tap Deploy. The bay opens and the Starlinks leave one by one. Before the orbit is ready the card says “Your turn. Reach orbit, then Deploy.” In orbit it says “Your turn. Tap Deploy.”</li>
+        <li>Each drifts away very slowly. Over the next orbits they spread into a line.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Park the same circle as First orbit, with fuel still in the ship. Cut the engine. Tap Deploy once. The bay opens and the Starlinks leave one by one. Each drifts away very slowly. Over the next orbits they spread into a line.</p>
+      <h3>For a teacher</h3>
+      <p>On Starship the bay door opens about 20 to 35 minutes after liftoff, and a rack pushes the flat satellites out one by one, about once a minute. On Falcon 9 the whole stack is let go at once while the stage turns slowly.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>“Sat Pe still in the air — circularize, then deploy.”</li>
+        <li>“The satellite went out below orbit. It falls back.”</li>
+        <li>“Only … km/s left — the ship can't reach orbit to deploy.”</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-deploy.webp" alt="iPhone. The Deploy lesson.">
+        <figcaption>iPhone. Deploy.</figcaption>
+      </figure>
+    </details>
+
+    <details id="belly-flop">
+      <summary>Belly flop</summary>
+      <p class="meta">Fly · 160 points · button Come home</p>
+      <h3>Goal</h3>
+      <p>From the air the ship comes home sideways. The belly makes the drag and the heat. Near the ground the engines flip the tail down, and the tower catches it. No legs.</p>
+      <h3>How the game marks it done</h3>
+      <p>The ship is home. The status then says: “Caught. … The arms have the ship. No legs on this one.”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Belly flop, then Come home. The example says: “The ship is already falling. Belly, flip, then the arms. Choose a time, then watch.”</li>
+        <li>Press My turn. The card says: “Your turn. The ship is already in the air. Autopilot flies the belly and the flip. Watch the catch.”</li>
+        <li>The ship meets the air sideways. The belly, not the nose, takes the heat.</li>
+        <li>Flaps hold that belly to the wind. Engines stay off while the air does the slowing.</li>
+        <li>Low down, the engines light and flip the tail under it. The tower arms catch the ship. Use 4× while it is high, and 1× for the flip.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>You watch. The ship meets the air sideways. Flaps hold the belly into the wind. The engines stay off while the air does the slowing. Low down they light, flip the tail under the ship, and the tower arms close. There are no legs. The Moon and Mars ships in these lessons use legs, because there is no tower on the Moon or on Mars.</p>
+      <h3>For a teacher</h3>
+      <p>Starship comes in belly-first, tipped so the wind hits the tiles. The forward and aft flaps move against each other to hold that angle. The hot air wraps the windward side.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>The example keeps saying the engines stay off while the ship is still sideways. The flip waits until the air has done its work.</li>
+        <li>Watch the catch at 1×. The card on the board says: “Watch the belly, the flip, and the catch. 4× until it is low, then 1× for the flip.”</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-belly-flop.webp" alt="iPhone. The Belly flop lesson.">
+        <figcaption>iPhone. Belly flop.</figcaption>
+      </figure>
+    </details>
+
+    <details id="tilt-to-the-station">
+      <summary>Tilt to the station</summary>
+      <p class="meta">Classroom · 70 points · button Tilt to the station</p>
+      <h3>Goal</h3>
+      <p>408 km up, tipped to 51.6°, the same plane as the space station. Launch on that heading and you arrive with fuel to spare. Tilting a 26° orbit up to it spends almost everything.</p>
+      <h3>How the game marks it done</h3>
+      <p>On your turn, on the question, with LEO picked in the orbit row. The status is then “LEO. The station lives here.” Until you press My turn the line stays: “The station flies at 51.6°. Press My turn when you want to try.” A wrong pick says “That's ” plus that orbit’s name, a colon, its short line, and “Try again.” LEO’s short line is “low and tilted, like the ISS”.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Tilt to the station, then Tilt to the station. Watch the example.</li>
+        <li>Press My turn. The card says: “Your turn. Which orbit does the space station use? Pick it.”</li>
+        <li>Aim the compass about 44° east of north. Earth helps a little.</li>
+        <li>From the parking orbit, two sideways burns half a lap apart reach 51.6°.</li>
+        <li>You arrive with 0.8 km/s left. Real crews launch into the plane. On the question, tap LEO.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Watch, then try. A launch on that heading arrives with fuel left. Starting from the 26° parking orbit and turning up to 51.6° also arrives, but only 0.8 km/s is left. That is not enough to come home safely.</p>
+      <h3>For a teacher</h3>
+      <p>Real crews launch near 51.6° from the start. Turning a 26° orbit up to the station uses almost all of the fuel that was saved for coming home.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>The question waits until you press My turn. The launch and the move come first. Their lines are the launch cue, then “Move there from the parking orbit.”</li>
+        <li>If the orbit row is on something else, the card names that orbit and says “Try again.”</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-tilt-to-the-station.webp" alt="iPhone. The Tilt to the station lesson.">
+        <figcaption>iPhone. Tilt to the station.</figcaption>
+      </figure>
+    </details>
+
+    <details id="polar">
+      <summary>Polar</summary>
+      <p class="meta">Classroom · 70 points · button Watch the poles</p>
+      <h3>Goal</h3>
+      <p>817 km up, about 101 minutes a lap, straight over the north pole and then the south. The line stays put while Earth turns, so the next pass is a new place.</p>
+      <h3>How the game marks it done</h3>
+      <p>Polar is selected, the path has crossed a pole line at least four times, and the Earth’s spin has passed 0.7 radians. If Polar is not selected the status is “Select Polar in the orbit row.” The example says: “Straight over both poles. The next pass is a new place. Press My turn when you want the question.”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Polar, then Watch the poles.</li>
+        <li>Press My turn. The card says: “Your turn. Which orbit crosses both poles? Pick it.”</li>
+        <li>Tap Polar in the orbit row. The path goes over the north pole, then the south pole.</li>
+        <li>Your line stays still. You do not chase the ground. Earth turns underneath, so the next lap sees a new place.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Watch the example. The line stays put. EAST slides around the rim because the Earth is turning, not because the satellite is chasing the ground. Then it is your turn. Tap Polar. A later change of tilt is a sideways burn, and it is cheapest when you are moving slowly. The cheap choice is to launch into the plane you want.</p>
+      <h3>For a teacher</h3>
+      <p>Weather satellites and ice satellites use polar or near-polar paths for that strip-by-strip look. The tilt is picked on the way up, by the direction of the launch. A polar flight leaves south from a west-coast pad. A flight to a station leaves northeast from Florida, near 51.6°.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>The craft in this lesson is named MetOp. The long page also says MetOp really flies 98.7°, sun-synchronous, so it keeps the same morning light.</li>
+        <li>A wrong pick names the orbit you tapped. Polar’s short line is “straight over both poles”.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-polar.webp" alt="iPhone. The Polar lesson.">
+        <figcaption>iPhone. Polar.</figcaption>
+      </figure>
+    </details>
+
+    <details id="dawn-dusk">
+      <summary>Dawn-dusk</summary>
+      <p class="meta">Classroom · 70 points · button Watch dawn-dusk</p>
+      <h3>Goal</h3>
+      <p>786 km up, about 100 minutes a lap, tipped to 98.6°. Earth's bulge walks that plane with the Sun, about one degree a day. Dawn-dusk means every pass sees the same morning or evening light.</p>
+      <h3>How the game marks it done</h3>
+      <p>Sun-sync is selected, the path has crossed a pole line at least four times, and the Earth’s spin has passed 0.7 radians. If it is not selected the status is “Select Sun-sync in the orbit row.” The example holds one line: “Just short of the pole, where day meets night. Press My turn when you want the question.”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Dawn-dusk, then Watch dawn-dusk.</li>
+        <li>Press My turn. The card says: “Your turn. Which orbit sees the same dawn or dusk light every pass? Pick it.”</li>
+        <li>Tap Sun-sync. The path is almost polar, tipped a little past 90 degrees.</li>
+        <li>One real day is a button on this orbit. It runs a day of the ground track.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Watch the dawn-dusk plane. It is not quite over the poles. The bulge, not the engine, is what walks it. Then tap Sun-sync.</p>
+      <h3>For a teacher</h3>
+      <p>The tilt is chosen for the height. A lower sun-synchronous orbit is tipped a little less, a higher one a little more. The satellite does not burn to keep up with the Sun. The shape of the Earth does the walking.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>The craft is named Sentinel-2. Sun-sync’s short line, if you pick it by mistake on another question, is “the same light on every pass”.</li>
+        <li>On your turn the live line is “Just short of the pole, where day meets night.” or “The line stays on the sunset.”</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-dawn-dusk.webp" alt="iPhone. The Dawn-dusk lesson.">
+        <figcaption>iPhone. Dawn-dusk.</figcaption>
+      </figure>
+    </details>
+
+    <details id="hangs-still">
+      <summary>Hangs still</summary>
+      <p class="meta">Classroom · 120 points · button Ride GEO</p>
+      <h3>Goal</h3>
+      <p>35 786 km up, on the equator. One lap takes 23 h 56 min, the same time Earth takes to turn, so it hangs over one spot. The gold line is that spot. Tilt the plane and it nods north and south.</p>
+      <h3>How the game marks it done</h3>
+      <p>GEO is selected, the height stays between 33 000 and 39 000 km, and the angle between the satellite and the Earth’s spin stays under 0.35 radians, for 8 seconds. The done line is: “Parked. It hangs on the gold line. One lap matches one turn of the Earth.” The example says: “It hangs on the gold line. The ground turns, the satellite stays. Press My turn when you want the question.”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Hangs still, then Ride GEO.</li>
+        <li>Press My turn. The card says: “Your turn. Which orbit hangs over one spot? Pick it.”</li>
+        <li>Tap GEO. 35 786 km up. One lap takes one day: 23 hours and 56 minutes.</li>
+        <li>On the equator it hangs over one spot. Pinch in. The ground keeps turning. Tip the path and it nods north and south instead.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Watch the gold line. Pinch in on the Earth. The satellite stays on the line while the continents slide under it. Then tap GEO. The wide view hides the turning, because the Earth is a speck. The close view is where you see it.</p>
+      <h3>For a teacher</h3>
+      <p>Television, some radio, and weather satellites that stare at one continent live here. A weather satellite such as Meteosat watches a whole disc of Earth without sweeping along a strip.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>While it is settling the line is “Settling onto the ring.” While the 8 seconds run it is “Hanging on the gold line.”</li>
+        <li>The craft is named Relay. GEO’s short line is “hangs over one spot on the equator”.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-hangs-still.webp" alt="iPhone. The Hangs still lesson.">
+        <figcaption>iPhone. Hangs still.</figcaption>
+      </figure>
+    </details>
+
+    <details id="the-long-ellipse">
+      <summary>The long ellipse</summary>
+      <p class="meta">Classroom · 130 points · button Ride the ellipse</p>
+      <h3>Goal</h3>
+      <p>Starts as a low circle, about 250 km up. A forward burn there raises only the top, out to 35 786 km. Coast that ellipse. At the slow top, a forward burn raises the bottom until it is a circle on the GEO ring.</p>
+      <h3>How the game marks it done</h3>
+      <p>The path has been under 2 400 km and above 35 600 km, and the craft is now above 35 740 km. If the transfer film is still playing, its beat has to be the circle. A paused example does not finish. The card waits on Watch, Bottom burn, Watch path, or Top burn.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap The long ellipse, then Ride the ellipse. The picture stops before the low circle, before each burn, and before the coast. Choose a time, then press the button: Watch, Bottom burn, Watch path, or Top burn.</li>
+        <li>Press My turn. The card says: “Your turn. Hold the bottom burn, then the top burn. The coast flies itself.”</li>
+        <li>Start in a low circle. Burn forward at the bottom. Only the high end rises. The button for that burn is Hold to burn.</li>
+        <li>Coast the long ellipse. No burn in the middle. Close, Path, and North change the view.</li>
+        <li>At the high end, burn forward again. The low end rises, and it becomes a circle. The lesson is finished only on the circle.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>The picture stops before the low circle, before each burn, and before the coast. Choose a time, then press the small button. The line stays until you move on. Then you fly the burns yourself. The lesson is finished only on the circle.</p>
+      <h3>For a teacher</h3>
+      <p>Rockets from Florida and from Kourou drop satellites onto this ellipse. Kourou is near the equator, so the plane is only tipped about 5°3'. That tip is taken out at the top, where you are slow and a sideways push is cheap.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>On a burn the card adds “Hold to burn.” At the bottom the coach says a forward burn raises the top. At the top it says the nose forward raises the bottom.</li>
+        <li>GTO’s short line, on a wrong pick, is “a long, stretched ellipse”. The craft is named Transfer.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-the-long-ellipse.webp" alt="iPhone. The long ellipse lesson.">
+        <figcaption>iPhone. The long ellipse.</figcaption>
+      </figure>
+    </details>
+
+    <details id="navigation-belt">
+      <summary>Navigation belt</summary>
+      <p class="meta">Classroom · 80 points · button Ride the belt</p>
+      <h3>Goal</h3>
+      <p>About 23 200 km up. Galileo takes about 14 hours a lap. GPS is a bit lower, two laps a day. The period is picked so the same satellites come back over the same places.</p>
+      <h3>How the game marks it done</h3>
+      <p>MEO is selected and the height stays between 18 000 and 28 000 km for 4 seconds. If MEO is not selected the status is “Select MEO in the orbit row.” When the example’s 4 seconds are up it says “Example done. Your turn!”</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Navigation belt, then Ride the belt.</li>
+        <li>Press My turn. The card says: “Your turn. Which orbit is the navigation belt? Pick it.”</li>
+        <li>Tap MEO. You are not asked to fly the climb. The lesson is to know which ring this is, and why the lap time matters.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Watch the middle ring. When the example is done, it is your turn. Then tap MEO. Close satellites lap Earth in about 90 minutes. This ring is slower. Galileo takes about 14 hours. GPS does two laps a day. The clock is the point: the same satellites come back over the same places.</p>
+      <h3>For a teacher</h3>
+      <p>A phone listens to the times these satellites send. The difference between those times is the distance to each one, and several distances put you on the map. The satellites carry clocks that are looked after from the ground.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>On your turn the line counts down: “Navigation belt. … s — slower than the stations, far below GEO.” Off the ring it says “Climbing into the navigation belt.”</li>
+        <li>The craft is named Galileo. MEO’s short line is “the middle ring, for navigation”.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-navigation-belt.webp" alt="iPhone. The Navigation belt lesson.">
+        <figcaption>iPhone. Navigation belt.</figcaption>
+      </figure>
+    </details>
+
+    <details id="linger-up-high">
+      <summary>Linger up high</summary>
+      <p class="meta">Classroom · 90 points · button Ride the linger</p>
+      <h3>Goal</h3>
+      <p>Starts low, about 500 km. A forward burn throws the top to about 39 900 km, tilted 63.4°, so that high end sits over the far north. You are slow there, so you linger. The ellipse stays. A working satellite does not round it off.</p>
+      <h3>How the game marks it done</h3>
+      <p>The path has been under 2 500 km and above 36 000 km, and the craft has stayed above 32 000 km for 4 seconds. The done line is: “The ellipse stays. You lingered over the north.” There is no burn at the top. A paused example does not finish on the cue alone.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Linger up high, then Ride the linger. The picture stops before the low circle, before the bottom burn, and before the coast. Choose 1×, 4×, 16×, 32×, or 64×, then press Watch, Bottom burn, or Watch path.</li>
+        <li>Press My turn. The card says: “Your turn. Hold the bottom burn. Linger over the north. There is no burn at the top.”</li>
+        <li>Hold to burn at the bottom. The top climbs a long way up. Coast. Up high you are slow. Close, Path, and North change how much of the ellipse you see.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Press My turn when you want the challenge. The lesson is finished when you have lingered over the north. The ellipse stays, about 500 × 39 900 km. A working satellite does not round it off.</p>
+      <h3>For a teacher</h3>
+      <p>A working Molniya satellite stays on the ellipse, because the linger is the whole point. Two of them, timed apart, can keep a radio path open over the north for most of a day.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>While you are up high and not done yet, the line is “Up high. … s — slow over the north. The ellipse stays.”</li>
+        <li>The last pause button is still labeled Top burn. The card says to skip that burn. The craft is named Molniya. Its short line is “lingers high over the north”.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-linger-up-high.webp" alt="iPhone. The Linger up high lesson.">
+        <figcaption>iPhone. Linger up high.</figcaption>
+      </figure>
+    </details>
+
+    <details id="to-the-moon">
+      <summary>To the Moon</summary>
+      <p class="meta">Voyage · 120 points · button Leave Earth</p>
+      <h3>Goal</h3>
+      <p>Forward at Earth raises the far end to the Moon. Coast. Forward at the Moon raises the near end until you share the Moon's path around Earth. Orbiting the Moon itself is a different burn: backward, at the closest pass.</p>
+      <h3>How the game marks it done</h3>
+      <p>The voyage is done when its beats are finished. The steps on screen are “1 · Earth, forward”, “Coast”, and “2 · Moon, forward”. The lesson text says it is done only when both burns are finished. This lesson stops on the path that travels with the Moon. The backward burn that orbits the Moon is the next one, and this lesson does not require it.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap To the Moon, then Leave Earth. The picture stops before each burn and before the coast. Choose a time, then press Earth burn, Watch coast, or Moon burn.</li>
+        <li>Press My turn. The card says: “Your turn. Hold to burn at each burn. The coast flies itself.”</li>
+        <li>Point forward at Earth. The far end rises out to the Moon. Hold to burn.</li>
+        <li>Coast for about five days. The Moon comes to meet that far end. The coast button is Watch coast. On your turn a coast can also wait.</li>
+        <li>Point forward again. You travel with the Moon. The button is Moon burn.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>The picture stops before each burn and before the coast, with the line that says what comes next. Choose a time, then press the small button. Press My turn when you want to fly the burns yourself. The coast does not burn. In this picture that coast is about five days. The lesson is done only when both burns are finished.</p>
+      <h3>For a teacher</h3>
+      <p>Apollo and Artemis light a long burn in low Earth orbit and then coast for about three days. Small corrections tidy the path. At the Moon a backward burn drops the ship into orbit around the Moon. Only after that does a lander go down. This picture is the slower coast, out to the far end, about five days. Apollo meets the Moon sooner.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>While a burn is waiting, the status ends with “Hold to burn.”</li>
+        <li>The example coast runs at least at 16×. The time chips still work. A burn stays on the clock you picked.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-to-the-moon.webp" alt="iPhone. The To the Moon lesson.">
+        <figcaption>iPhone. To the Moon.</figcaption>
+      </figure>
+    </details>
+
+    <details id="burn-home">
+      <summary>Burn home</summary>
+      <p class="meta">Voyage · 130 points · button Return</p>
+      <h3>Goal</h3>
+      <p>You are traveling with the Moon. Slowing down is the way home. Backward at the Moon drops the near end onto Earth. Coast for about five days. Backward at Earth drops the far end, and you stay on an oval.</p>
+      <h3>How the game marks it done</h3>
+      <p>The voyage is done when its beats are finished. The steps are “1 · Slow at the Moon”, “Coast · about 5 days”, and “2 · Slow at Earth”. The lesson ends when the second burn has dropped the far end.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Burn home, then Return. Choose a time, then press Slow at Moon, Watch coast, or Slow at Earth.</li>
+        <li>Press My turn. The card says: “Your turn. Slowing down is the way home. Hold the backward burn at the Moon, then at Earth.”</li>
+        <li>Point backward. Slowing down drops the near end toward Earth. Hold to burn.</li>
+        <li>Coast home for about five days. Engines off. The path is already aimed.</li>
+        <li>Point backward at Earth. The far end drops. You finish on an oval, not a circle.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>The picture stops with a line before each backward burn and before the coast home. Earth, the Moon, and the path stay in one view, so you can see the near end fall. Choose 1× when you want it slow. The coast is the long part, about five days in the lesson clock. Press My turn when you want to hold the burns yourself. The lesson ends when the second burn has dropped the far end.</p>
+      <h3>For a teacher</h3>
+      <p>Apollo lit the engine once, behind the ship at the Moon, and fell toward Earth for about three days. The air did the last of the slowing: a hot entry, then parachutes. There was no second burn at Earth, because the plan was to land, not to stay in orbit.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>Pointing the nose at Earth and thrusting does not drop you onto it. Thrust along your path is what changes the far end. The lesson says slowing down is the way home.</li>
+        <li>In this lesson there is no air-catch, so you fly that second backward burn yourself and remain on an oval.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-burn-home.webp" alt="iPhone. The Burn home lesson.">
+        <figcaption>iPhone. Burn home.</figcaption>
+      </figure>
+    </details>
+
+    <details id="to-mars">
+      <summary>To Mars</summary>
+      <p class="meta">Voyage · 140 points · button Leave for Mars</p>
+      <h3>Goal</h3>
+      <p>Same two burns, Sun in the middle. Forward at Earth raises the far end to Mars. Months of coast. Forward at Mars raises the near end until you travel with Mars.</p>
+      <h3>How the game marks it done</h3>
+      <p>After the burn at Mars the picture continues. The game marks the voyage done on a flyby past Mars, or when the entry has landed. The steps before that are “1 · Leave Earth”, “Coast · months”, and “2 · Arrive at Mars”. The lesson text says it is done when the burn at Mars has raised the near end.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap To Mars, then Leave for Mars. Choose a time, then press Leave Earth, Watch coast, or Arrive at Mars.</li>
+        <li>Press My turn. The card says: “Your turn. Hold forward at Earth, then at Mars. The months of coast fly themselves.”</li>
+        <li>Point forward at Earth. Only the far end rises, out to where Mars will be. Hold to burn.</li>
+        <li>Coast for months. Engines off. The path was set when you left.</li>
+        <li>Point forward at Mars. The near end rises, and you travel with Mars. A later arrival burn is labeled Burn backward. A hard entry offers Try again. A deorbit pause offers Deorbit.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>The picture stops with a line before each burn and before the months of coast. The Sun, Earth, and Mars stay in one view, so you can see the far end rise. Choose 1× when you want it slow. The coast is the long part. Press My turn when you want to hold the burns yourself. The lesson is done when the burn at Mars has raised the near end.</p>
+      <h3>For a teacher</h3>
+      <p>Earth and Mars line up for this path only about every 26 months. Leave on the wrong day and the far end does not meet Mars. The coast is most of a year. A few small correction burns keep the aim.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>A burn in the middle of the coast does not aim the meeting. The path was set when you left Earth.</li>
+        <li>On a waiting burn the status ends with “Hold to burn.” The coast line says to choose a time, then watch the path.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-to-mars.webp" alt="iPhone. The To Mars lesson.">
+        <figcaption>iPhone. To Mars.</figcaption>
+      </figure>
+    </details>
+
+    <details id="home-from-mars">
+      <summary>Home from Mars</summary>
+      <p class="meta">Voyage · 160 points · button Come home</p>
+      <h3>Goal</h3>
+      <p>Backward at Mars drops the near end onto Earth. Coast. Backward at Earth drops the far end. You then share Earth's year. A capture into low orbit would be one more backward burn, or a dip into the air.</p>
+      <h3>How the game marks it done</h3>
+      <p>The voyage is done when its beats are finished. The steps are “1 · Slow at Mars”, “Coast · months”, and “2 · Slow at Earth”. When it is done the status adds “Earth is here.” The lesson ends when the second burn has dropped the far end.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Home from Mars, then Come home. Come home on this card is this lesson, not Belly flop.</li>
+        <li>Press My turn. The card says: “Your turn. Slowing down is the way home. Hold the backward burn at Mars, then at Earth.”</li>
+        <li>Press Slow at Mars and hold Hold to burn. Slowing down drops the near end toward Earth.</li>
+        <li>Coast home for months. The button on the coast is Watch coast. Engines off. The path is already aimed.</li>
+        <li>Press Slow at Earth and hold the backward burn. You share Earth's year around the Sun.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>The picture stops with a line before each backward burn and before the months of coast. The Sun, Mars, and Earth stay in one view, so you can see the near end fall. Choose 1× when you want it slow. The coast is the long part. Press My turn when you want to hold the burns yourself. The lesson ends when the second burn has dropped the far end.</p>
+      <h3>For a teacher</h3>
+      <p>A crew leaves Mars on that same ellipse, coasts for months, and meets Earth at the near end going faster than Earth. One more slowing, almost always by the air, finishes the trip. The window matters again: Mars and Earth have to be in the right places, or the near end misses.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>This lesson ends when you share the year. A low orbit around Earth would be one more backward burn, or a dip into the air.</li>
+        <li>The points are awarded once, on your turn, when the lesson is really finished. Doing it again does not add points.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-home-from-mars.webp" alt="iPhone. The Home from Mars lesson.">
+        <figcaption>iPhone. Home from Mars.</figcaption>
+      </figure>
+    </details>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:nelenconsult@icloud.com">nelenconsult@icloud.com</a></p>
+  </main>
+  <footer>© 2026 Robin Nelen · Nelen Consult</footer>
+  <script>
+    function openFromHash() {
+      var id = location.hash.slice(1);
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === "DETAILS") el.open = true;
+    }
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      document.querySelectorAll("main details").forEach(function (d) { d.open = true; });
+    }
+  </script>
+</body>
+</html>
