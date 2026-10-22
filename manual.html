@@ -48,8 +48,8 @@
   </header>
   <main>
     <h1>Manual</h1>
-    <p class="meta">Fourteen lessons. The words below are the ones in the game. The pictures are from the iPhone 17e Simulator.</p>
-    <p>Career is the fourteen lessons, in order. Flight is the same pad with no mission. Sandbox is for throwing planets, and it keeps no score. On the mission board, tap a lesson, then its button. How this works opens the long page for that lesson. How to play opens the short page.</p>
+    <p class="meta">Fifteen lessons. The words below are the ones in the game. The pictures are from the iPhone 17e Simulator.</p>
+    <p>Career is the fifteen lessons, in order. Flight is the same pad with no mission. Sandbox is for throwing planets, and it keeps no score. On the mission board, tap a lesson, then its button. How this works opens the long page for that lesson. How to play opens the short page.</p>
 
     <h2>Contents</h2>
     <ul class="toc">
@@ -70,9 +70,10 @@
           <li><a href="#hangs-still">Hangs still</a></li>
         </ul>
       </li>
-      <li>The orbital plane. Orbital manoeuvres is not a card yet. It will sit between Tilt and Polar.
+      <li>The orbital plane.
         <ul>
           <li><a href="#tilt-to-the-station">Tilt to the station</a></li>
+          <li><a href="#orbital-manoeuvres">Orbital manoeuvres</a></li>
           <li><a href="#polar">Polar</a></li>
           <li><a href="#dawn-dusk">Dawn-dusk</a></li>
         </ul>
@@ -88,7 +89,7 @@
     </ul>
 
     <figure>
-      <img src="img/iphone-board.webp" alt="iPhone. The Aphelion mission board, with the fourteen lessons.">
+      <img src="img/iphone-board.webp" alt="iPhone. The Aphelion mission board.">
       <figcaption>iPhone. The mission board.</figcaption>
     </figure>
 
@@ -387,6 +388,56 @@
       <figure>
         <img src="img/iphone-tilt-to-the-station.webp" alt="iPhone. Tilt to the station. Equator is on the left and turn here is on the right.">
         <figcaption>iPhone. Tilt to the station.</figcaption>
+      </figure>
+    </details>
+
+<details id="orbital-manoeuvres">
+      <summary>Orbital manoeuvres</summary>
+      <p class="meta">Classroom · 90 points · button Fly the burns</p>
+      <h3>Goal</h3>
+      <p>See what a burn does, then tilt the plane yourself. Forward and backward move the opposite end. Sideways at a node tilts the plane. Outward turns the ellipse. A plane change is possible, and it costs a lot down low.</p>
+      <h3>How the game marks it done</h3>
+      <p>On your turn, after you pick 5°, 10°, or 20° and the sideways burn has flown, the question asks where a plane change is cheapest. The right button is “Slow, at a node.” A banner says RIGHT ORBIT! and this lesson’s 90 points land. The status line is: “You tilted the plane. Sideways at a node does it, and it costs a lot down low. Launch into the plane you want.” Watch and Coach fly the tilt for you and do not ask. A wrong button stays on the question.</p>
+      <h3>How to fly it</h3>
+      <ol>
+        <li>Tap Orbital manoeuvres, then Fly the burns. The example plays four burns, then a 10° tilt. Each burn is about six seconds. Fast-forward does not speed this picture.</li>
+        <li>Forward at the bottom. The high end rises and the low end stays 347 km. The gold arrow points forward and is named Prograde. The bar says this move needs 0.4 km/s. That is the 0.41 km/s burn that would raise the far end from 347 km to 2 000 km. Then the arrow turns backward and the high end falls. That half does not print a second cost.</li>
+        <li>Forward at the top. The low end rises and the high end stays 2 000 km. That burn is 0.39 km/s. Then backward, and the low end falls toward 800 km. The two forward burns together are 0.80 km/s.</li>
+        <li>Sideways at the node. AN and DN mark the two crossings of the equator. The line through the disc tilts. Normal points up, then Anti-normal points down and the tilt comes back. Ten degrees costs 1.34 km/s at 347 km and 1.20 km/s at 2 000 km.</li>
+        <li>Outward, then inward. The dashed ellipse turns in the plane. The low end stays 800 km and the high end stays 2 000 km. The line says the size barely changes. There is no fuel bar on this burn.</li>
+        <li>The example then flies 10° sideways at 347 km. The line counts the degrees, the km/s spent, and what is left of the 4.178 km/s the ship had. At 10° the pure tilt is 1.34 km/s, so about 2.84 km/s is left. The picture rounds that to 2.8. The disc reads 10.0° and the gold bar is shorter.</li>
+        <li>The last line of the example is the comparison. Launch into the plane you want. Walking the node is the same sideways burn. 28.5° down low costs 3.79 km/s. At the slow top, 0.79 km/s alone, or 1.83 km/s with the circle. From Kourou, 5.2° with the circle is 1.48 km/s.</li>
+        <li>Press My turn. The card says: “Press Watch, Coach, or By hand. Then you fly it.” By hand plays the same four burns, then three buttons: 5° · 0.67 km/s, 10° · 1.34 km/s, and 20° · 2.68 km/s. Coach flies 20°. Watch flies 10°. After your burn, tap Slow, at a node.</li>
+      </ol>
+      <h3>For a kid</h3>
+      <p>Forward lifts the far end. Backward brings it down. Outward turns the oval without really changing its size. Sideways, where the orbit crosses the equator, tips the whole plane. You can see the line tilt. It costs a lot when you are low and fast. Do it up high, or launch into the plane you already want.</p>
+      <h3>For a teacher</h3>
+      <p>A pure plane change at a node is Δv = 2 v sin(Δi/2). Vallado, Fundamentals of Astrodynamics and Applications. The same relation is the simple plane change in the FAA handbook, <a href="https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/avs/III.4.1.5_Maneuvering_in_Space.pdf">Maneuvering in Space</a>, section 4.1.5. A due-east launch from Kennedy is given there as 28.5°. The game uses that angle for Cape Canaveral. Kourou is 5.236°, and the line rounds it to 5.2° while the sum uses 5.236°. Combining the tilt with the circularising burn is the cheaper apogee manoeuvre. Howard D. Curtis, Orbital Mechanics for Engineering Students, chapter 6, works the same comparison: the plane change at the slow top costs less than the same tilt in low orbit. At 347 km the game’s circle speed makes 5° cost 0.67 km/s, 10° cost 1.34 km/s, and 20° cost 2.68 km/s. The drawn tilt is that pure change at 347 km. It is not the combined apogee burn. The picture is the existing globe, looked down from the pole, with the ground track drawn thicker. It is not a new 3D engine. The top line during the picture is the ship’s own parking readout, about 410 km, not the heights printed on the ellipse. Watch pays 18 of the 90 points and Coach pays 45, after the picture has flown. By hand and the question pay the 90.</p>
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>The question’s other buttons are “Fast and low” and “Anywhere on the circle.” Neither one finishes the lesson.</li>
+        <li>Twenty degrees at 347 km is 2.68 km/s of the 4.178 km/s on board, so about 1.50 km/s is left.</li>
+        <li>The long ellipse is still the two-burn transfer out to 35 786 km. The navigation belt is still GPS at about 20 200 km. This card does not move either of them.</li>
+      </ul>
+      <figure>
+        <img src="img/iphone-orbital-manoeuvres.webp" alt="iPhone 17e. Forward at the bottom. High end about 1 100 km, low end 347 km. The arrow is named Prograde.">
+        <figcaption>iPhone 17e. Forward at the bottom. The high end rises. The low end stays 347 km.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/iphone-orbital-manoeuvres-node.webp" alt="iPhone 17e. The plane is about 8°. AN and DN are marked. The arrow is named Anti-normal. Ten degrees costs 1.34 km/s down low and 1.20 km/s up high.">
+        <figcaption>iPhone 17e. Sideways at the node. The line through the disc has tilted.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/iphone-orbital-manoeuvres-turn.webp" alt="iPhone 17e. The dashed ellipse has turned. High end 2 000 km, low end 800 km. The arrow is named Inward.">
+        <figcaption>iPhone 17e. Inward turns the long end back. The size stays 800 km by 2 000 km.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/iphone-orbital-manoeuvres-tilt.webp" alt="iPhone 17e. Sideways burn, 6° of 10° so far. Spent 0.86 of 1.34 km/s. You have 3.32 km/s left.">
+        <figcaption>iPhone 17e. The 10° tilt, part way. The gold bar has shortened.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/iphone-orbital-manoeuvres-compare.webp" alt="iPhone 17e. The disc reads 10.0°. The line compares 3.79 km/s down low with 1.83 km/s at the top and 1.48 km/s from Kourou.">
+        <figcaption>iPhone 17e. Ten degrees. Launch into the plane you want.</figcaption>
       </figure>
     </details>
 
