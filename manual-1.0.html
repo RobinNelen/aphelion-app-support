@@ -403,5 +403,15 @@
     </ul>
   </main>
   <footer>Aphelion 1.0. This page is the course the mission buttons open. Brand names in the lessons stay as the game writes them.</footer>
+  <script>
+    function openHashedChapter() {
+      var id = (location.hash || "").replace(/^#/, "");
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (el && el.tagName === "DETAILS") el.open = true;
+    }
+    openHashedChapter();
+    window.addEventListener("hashchange", openHashedChapter);
+  </script>
 </body>
 </html>
