@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aphelion 1.0 manual</title>
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; color: #e8e6e1;
+      background: radial-gradient(1200px 600px at 50% -200px, #1d2433 0%, #0a0b0f 60%) fixed, #0a0b0f; }
+    header { text-align: center; padding: 3rem 1.25rem 1rem; }
+    header img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 10px 40px rgba(120,160,255,.25); }
+    header .brand { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; letter-spacing: .02em; margin: .8rem 0 .2rem; color: #fff; }
+    header .tag { color: #8b93a3; font-size: .95rem; margin: 0; }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; }
+    nav a { color: #e8e6e1; text-decoration: none; padding: .45rem 1rem; border-radius: 999px; border: 1px solid #2a2f3a; font-size: .95rem; }
+    nav a.on, nav a:hover { background: #f1efe9; color: #0a0b0f; border-color: #f1efe9; }
+    main { max-width: 48rem; margin: 1.5rem auto 3rem; padding: 2rem 1.75rem; background: rgba(20,22,28,.75); border: 1px solid #22262f; border-radius: 20px; }
+    h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 .4rem; color: #fff; }
+    h2 { font-size: 1.15rem; margin: 1.4rem 0 .35rem; color: #fff; }
+    h3 { font-size: 1rem; margin: 1rem 0 .25rem; color: #fff; }
+    p, li { margin: .4rem 0; }
+    a { color: #9cc3ff; }
+    code { background: #1a1d24; padding: .1rem .35rem; border-radius: 6px; font-size: .9em; }
+    .meta { color: #8b93a3; font-size: .95rem; }
+    .toc, .toc ul { list-style: none; margin: .2rem 0 .4rem; padding: 0; }
+    .toc ul { margin-left: 1rem; }
+    details { margin: 1.1rem 0; border-top: 1px solid #22262f; padding-top: .7rem; }
+    summary { cursor: pointer; color: #fff; font-size: 1.15rem; }
+    ol { margin: .3rem 0 .6rem; padding-left: 1.2rem; }
+    svg.diagram { width: 100%; max-width: 28rem; height: auto; display: block; margin: .6rem 0; background: #0e1116; border: 1px solid #22262f; border-radius: 12px; }
+    .answer { color: #c8d7c2; }
+    footer { text-align: center; color: #5f6675; font-size: .85rem; padding: 0 1rem 2.5rem; }
+    @media (max-width: 480px) { main { margin: 1rem .75rem 2rem; padding: 1.25rem 1rem; } header { padding-top: 1.5rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icon.png" alt="Aphelion app icon">
+    <div class="brand">Aphelion</div>
+    <p class="tag">The 1.0 course. One short chapter for each mission.</p>
+    <nav>
+      <a href="manual-1.0.html" class="on">Manual</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Aphelion 1.0</h1>
+    <p class="meta">Fifteen missions, in the order the game flies them. A new install opens on the first one, with the rocket in view. Numbers that are physics are cited. Numbers that are only the lesson are marked as what the screen says.</p>
+
+    <h2>Contents</h2>
+    <ul class="toc">
+      <li><a href="#controls">Controls</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+      <li><a href="#first-orbit">First orbit</a></li>
+      <li><a href="#belly-flop">Belly flop</a></li>
+      <li><a href="#deploy">Deploy</a></li>
+      <li><a href="#linger-up-high">Linger up high</a></li>
+      <li><a href="#the-long-ellipse">The long ellipse</a></li>
+      <li><a href="#navigation-belt">Navigation belt</a></li>
+      <li><a href="#hangs-still">Hangs still</a></li>
+      <li><a href="#tilt-to-the-station">Tilt to the station</a></li>
+      <li><a href="#orbital-manoeuvres">Orbital manoeuvres</a></li>
+      <li><a href="#polar">Polar</a></li>
+      <li><a href="#dawn-dusk">Dawn-dusk</a></li>
+      <li><a href="#to-the-moon">To the Moon</a></li>
+      <li><a href="#burn-home">Burn home</a></li>
+      <li><a href="#to-mars">To Mars</a></li>
+      <li><a href="#home-from-mars">Home from Mars</a></li>
+    </ul>
+
+    <details id="controls" open>
+      <summary>Controls</summary>
+      <p>iPhone, iPad, and Mac show the same buttons. On a Mac the app is the iPad app. A keyboard works there too.</p>
+      <h3>Throttle</h3>
+      <p>Ignite lights the engines at full. While they are lit the same button says Cut, and Cut sets the throttle to zero. On a phone or iPad a Throttle slider sits above Ignite. Drag it anywhere from off to full. On a Mac with a fine pointer, the slider is on the flight panel. Shift raises the throttle a little. Control lowers it. W or Z sets full. X cuts.</p>
+      <p>During the example and during Autopilot, the climb eases the engines once, around Max Q, then pushes again. If you move the slider, Shift, or Control, your setting wins until you turn Autopilot on again or start the example again. A hand flight does not ease for you. You fly the throttle yourself.</p>
+      <h3>Time warp, including while auto is running</h3>
+      <p>The buttons are 1×, 4×, 16×, 32×, and 64×. They work while Example, Autopilot, or the auto clock is running. Your pick wins over the auto pace until you press Auto. Auto gives the pacing back to the lesson. Nothing in the second half of a mission runs faster than the button you picked: coasts, station clocks, and the fast parts of a film stay at your rate or slower. A hold that is meant to sit still, such as a pause before a burn, stays still. Plus and minus on the keyboard set the same pick.</p>
+      <h3>The rest of the screen</h3>
+      <p>East and West tip the nose. The green mark is prograde, the way you are already going. Deploy lets a satellite go. Stage separates. Manual on the mission screen opens this page at that mission’s chapter. Manual in Settings opens this page too. Ship, Booster, Pad, and Orbit jump the camera. Flat looks along the orbit so the path lies flat, centred on Earth. A new flight opens on the ship, with the rocket in view, not on Flat. Pause stops the picture. My turn leaves the example and starts your try. Retry starts that try again. Hold to burn is the voyage button.</p>
+      <p>Settings only changes the numbers you read and the language. The rocket flies the same path. The choice stays on the device.</p>
+    </details>
+
+    <details id="first-orbit">
+      <summary>1. First orbit</summary>
+      <h3>What you'll learn</h3>
+      <p>A rocket bends east so it falls around Earth instead of back onto it, and it eases the engines where the air pushes hardest.</p>
+      <h3>The idea</h3>
+      <p>An orbit is a repeating path around another body. The path is an ellipse. The near end is perigee and the far end is apogee. Going fast enough sideways means the ground curves away as fast as you fall, so you keep missing Earth.</p>
+      <svg class="diagram" viewBox="0 0 320 160" role="img" aria-label="Ellipse around Earth. The near point is perigee. The far point is apogee.">
+        <ellipse cx="150" cy="80" rx="110" ry="48" fill="none" stroke="#9cc3ff" stroke-width="2"/>
+        <circle cx="110" cy="80" r="18" fill="#3d6ea8"/>
+        <text x="96" y="84" fill="#fff" font-size="11">Earth</text>
+        <text x="18" y="74" fill="#e8e6e1" font-size="12">perigee</text>
+        <text x="248" y="74" fill="#e8e6e1" font-size="12">apogee</text>
+      </svg>
+      <p>NASA’s page for grades 5–8 says an orbit is a regular, repeating path, that orbits are ellipses, and that for a satellite of Earth the nearest point is perigee and the farthest is apogee. <a href="https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-an-orbit-grades-5-8/">nasa.gov, What Is an Orbit? (Grades 5–8)</a></p>
+      <p>At the equator the ground already moves east. NASA/JPL lists Earth’s equatorial radius as 6378.137 km and its rotation rate as 7.292115×10⁻⁵ radians per second. Those two multiply to about 465 m/s. The screen’s “Earth 465 m/s E” is that eastward speed. <a href="https://ssd.jpl.nasa.gov/api/horizons.api?format=text&amp;COMMAND=%27399%27&amp;EPHEM_TYPE=%27VECTORS&amp;CENTER=%2710%27&amp;START_TIME=%27JD%202451545.0%27&amp;STOP_TIME=%27JD%202451545.0%27&amp;REF_PLANE=%27ECLIPTIC%27&amp;REF_SYSTEM=%27J2000%27&amp;QUANTITIES=%2723%27">NASA/JPL Horizons, Earth geophysical properties</a></p>
+      <p>Max Q. The air pushes hardest here, so the engines ease off, then push again, so that push stays something the rocket can take. NASA’s STS-133 press kit says the main engines throttle to 316,000 pounds of thrust so dynamic pressure stays below about 580 pounds per square foot, then throttle back up. Normal operating level in a vacuum is 490,847 pounds. 316,000 / 490,847 is the fraction this lesson uses, about 64%. <a href="https://www.nasa.gov/wp-content/uploads/2023/05/491387main-sts-133-press-kit.pdf">NASA STS-133 press kit (PDF page 71)</a></p>
+      <p class="meta">SpaceX times Max Q on Starship Flight 15 at T+00:00:58 and does not publish a throttle percent. The 64% figure is the Shuttle’s, not a Starship setting. The lesson does not copy the Shuttle’s 26-second and 60-second clock. It eases while dynamic pressure is above that 580 psf limit, then goes back to full. <a href="https://www.spacex.com/launches/starship-flight-15">SpaceX, Starship Flight 15</a></p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Open First orbit. A fresh install is already there. The rocket is in the ship view.</li>
+        <li>Press the example and watch the climb. The engines ease, then push again, while the line talks about Max Q. Fuel is still in the booster when it stages.</li>
+        <li>Press My turn. The card says to pitch east, or press Autopilot. The strip reads “1 Burn up”, “2 Cut &amp; coast”, and “3 Burn at the top”.</li>
+        <li>Go straight up, then tip east. Cut when the screen says CUT NOW, near a 275 km top. Coast.</li>
+        <li>At the top, put the nose on the green prograde mark and burn when it says IGNITE NOW. That burn lifts the low end. Leave fuel in the ship.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why ease the engines at Max Q instead of pushing at full the whole way up?</p>
+      <p class="answer">Answer: that is where the air pushes hardest. Easing keeps that push at a level the rocket can take, then the engines push again as the air thins. The cited limit is about 580 pounds per square foot.</p>
+    </details>
+
+    <details id="belly-flop">
+      <summary>2. Belly flop</summary>
+      <h3>What you'll learn</h3>
+      <p>Coming home, the ship meets the air on its belly, then flips tail-down so the tower can catch it.</p>
+      <h3>The idea</h3>
+      <p>The wide belly, not the nose, takes the wind and the heat. Flaps hold that belly into the wind. The engines stay off while the air does the slowing. Low down they light, flip the tail under the ship, and the arms catch it. This ship has no legs.</p>
+      <p>SpaceX’s Starship page describes the ship returning, flipping, and the booster returning to be caught. The lesson’s catch is that idea on the tower. <a href="https://www.spacex.com/vehicles/starship/">SpaceX, Starship</a></p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Belly flop, then Come home. The ship is already in the air and waits. The line says to press Watch or Example.</li>
+        <li>Start the example. Use 4× while it is high, and 1× for the flip. If you pick 1×, the rest of the fall does not run faster than 1×.</li>
+        <li>Press My turn. The card says Autopilot flies the belly and the flip. Watch the catch.</li>
+        <li>The tower comes into the frame once the ship is low. The arms close. There are no legs.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why does the ship come in sideways instead of nose-first?</p>
+      <p class="answer">Answer: the belly is the broad face. It makes the drag and takes the heat. The engines only light at the end, to flip the tail down for the catch.</p>
+    </details>
+
+    <details id="deploy">
+      <summary>3. Deploy</summary>
+      <h3>What you'll learn</h3>
+      <p>The same parking orbit can let satellites go, if you still have fuel in the ship when you arrive.</p>
+      <h3>The idea</h3>
+      <p>You park on the same kind of circle as First orbit, engines off, then open the bay. The Starlinks leave one by one and drift apart slowly until they form a line. The count of satellites is the one the game already ships. This page does not change it.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Deploy, then To the pad. Start the example, or press My turn.</li>
+        <li>Park the circle the same way as First orbit. Keep fuel in the ship.</li>
+        <li>When the card says to, tap Deploy. The bay opens and the Starlinks leave one by one.</li>
+        <li>If you deploy before the orbit is ready, the card says to reach orbit first.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>What has to be true before Deploy does the job?</p>
+      <p class="answer">Answer: the ship is on a closed path with the low end above the air, and you still have fuel in the ship. Then one tap opens the bay.</p>
+    </details>
+
+    <details id="linger-up-high">
+      <summary>4. Linger up high</summary>
+      <h3>What you'll learn</h3>
+      <p>A long ellipse makes you slow at the far end, so you linger over the north. You do not round the path off.</p>
+      <h3>The idea</h3>
+      <p>NASA’s grades page says a comet moves quickly when it is close to the Sun and slowly when it is far away. The same thing happens on a long ellipse around Earth: you are fast at the low end and slow at the high end. The slow part is the linger.</p>
+      <p>Lower down, air still drags a spacecraft. NASA’s station transition FAQ says the station flies around 415 km, and that at that height its orbital lifetime is roughly one to two years if nobody reboosts it, depending on the Sun. <a href="https://www.nasa.gov/faqs-the-international-space-station-transition-plan/">NASA, ISS Transition Plan FAQ</a></p>
+      <p class="meta">The lesson’s high end, about 39,900 km, and its 63.4° tilt are the picture in the game. This page does not have a NASA or SpaceX citation for that pair. The idea that you linger because you are far away is the cited one.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Linger up high, then Ride the linger. You see two rings. Press “Then the ellipse”.</li>
+        <li>The picture stops before the low circle, the bottom burn, and the coast. Pick a time, then press Watch, Bottom burn, or Watch path.</li>
+        <li>Press My turn. Hold the burn at the bottom. The top climbs. Coast. There is no burn at the top.</li>
+        <li>Up high the line says you are slow over the north, and the ellipse stays.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why not burn again at the top and make a circle?</p>
+      <p class="answer">Answer: the linger is the point. A circle would spend its time moving quickly all the way around. On the ellipse you are slow at the far end, over the north.</p>
+    </details>
+
+    <details id="the-long-ellipse">
+      <summary>5. The long ellipse</summary>
+      <h3>What you'll learn</h3>
+      <p>A forward burn at the low end raises only the high end. A forward burn at the high end raises the low end, until both ends sit on the geostationary ring.</p>
+      <h3>The idea</h3>
+      <p>NASA Earthdata says a platform at 35,786 km has an orbital speed that matches Earth’s rotation, and that one sitting over the equator is geostationary: it stays over the same place. This lesson climbs to that ring on a long ellipse, then rounds it. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <p>Prograde means forward, along the way you are already going. The green arrow is that direction. Forward at one end of the ellipse raises the other end. The screen labels both ends with their altitudes.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap The long ellipse, then Ride the ellipse.</li>
+        <li>The picture stops before the low circle, each burn, and the coast. Pick a time, then press Watch, Bottom burn, Watch path, or Top burn. Your pick caps the fast coast.</li>
+        <li>Press My turn. Hold the bottom burn. Only the high end rises. Coast. Do not burn in the middle.</li>
+        <li>At the high end, burn forward again. The low end rises onto the gold line. The lesson finishes on that circle.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>You are at the low end and you burn forward. Which end moves?</p>
+      <p class="answer">Answer: the high end. The low end stays where you burned. The matching burn at the top lifts the low end.</p>
+    </details>
+
+    <details id="navigation-belt">
+      <summary>6. Navigation belt</summary>
+      <h3>What you'll learn</h3>
+      <p>Navigation satellites live in a middle belt, higher than a low orbit and lower than the geostationary ring, and a lap there takes about half a day.</p>
+      <h3>The idea</h3>
+      <p>NASA Earthdata calls medium Earth orbit the band from about 2,000 km to about 35,500 km. A platform there takes about 12 hours to go around, so in 24 hours it crosses the same two spots on the equator. The page names ESA’s Galileo at 23,222 km as one example. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <p class="meta">The lesson’s GPS picture sits near 20,200 km, two laps a day, in six planes. That altitude is the game’s figure. The public GPS page is gps.gov, which is not a NASA or SpaceX page, so it is not used as the citation here.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Navigation belt, then Ride the belt. The example starts the low burn. The line says only the high end rises.</li>
+        <li>Coast. Fast-forward is for the coast. The next burn waits at 1×, or at the slower rate you picked.</li>
+        <li>Press Burn forward at the top. The low end rises to the belt.</li>
+        <li>Press My turn, then Watch, Coach, or By hand. On the question, tap MEO and hold.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why is a lap in this belt much longer than a lap in low orbit?</p>
+      <p class="answer">Answer: the path is a much bigger circle, and you are moving more slowly. NASA’s description of medium orbit is about a 12-hour lap.</p>
+    </details>
+
+    <details id="hangs-still">
+      <summary>7. Hangs still</summary>
+      <h3>What you'll learn</h3>
+      <p>At 35,786 km over the equator, one lap matches one turn of Earth, so the satellite hangs over one spot.</p>
+      <h3>The idea</h3>
+      <p>NASA/JPL lists Earth’s mean sidereal day as 23.934 hours, which is 23 hours and 56 minutes. That is one turn relative to the stars, not the 24-hour solar day. A satellite that takes that same time, on the equator, stays over one longitude. NASA Earthdata puts that height at 35,786 km. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <p>The same page draws the bands the lesson uses when they fit: low orbit about 160 to 2,000 km, medium orbit about 2,000 to 35,500 km, and the geostationary line at 35,786 km. Tip the plane and the satellite nods north and south instead of hanging still.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Hangs still, then Ride GEO. The picture starts on a low circle.</li>
+        <li>Pick Chemical apogee or Hall thruster before it flies.</li>
+        <li>Burn forward at the bottom so the high end rises to 35,786 km. Coast. At the top, burn forward again. The path becomes the gold circle.</li>
+        <li>Press My turn when you want to fly an engine yourself. The done line says it hangs on the gold line.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why does a geostationary satellite not slide across the sky?</p>
+      <p class="answer">Answer: its lap takes the same time Earth takes to turn once, 23 hours 56 minutes, and it sits over the equator. The ground turns with it.</p>
+    </details>
+
+    <details id="tilt-to-the-station">
+      <summary>8. Tilt to the station</summary>
+      <h3>What you'll learn</h3>
+      <p>The station’s plane is tipped 51.6° from the equator. Launching into that plane saves the fuel a later tilt would cost.</p>
+      <h3>The idea</h3>
+      <p>NASA’s station FAQ says the International Space Station orbits at an inclination of 51.6 degrees, so the farthest north and south it goes is 51.6 degrees of latitude. <a href="https://www.nasa.gov/international-space-station-frequently-asked-questions/">NASA, International Space Station FAQ</a></p>
+      <p>A sideways burn can change the plane later. It costs a lot when you are low and fast. Launching on the station’s heading arrives with fuel left. The screen’s “costly way” starts due east, then does two sideways burns half a lap apart.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Tilt to the station. The example launches on the good heading.</li>
+        <li>Press My turn. Choose Watch, Coach, or By hand.</li>
+        <li>By hand starts with the compass at 90°. Turn it until the line matches the station heading, then launch.</li>
+        <li>When the picture finishes, press Question and tap ISS 51.6°.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why is it cheaper to launch toward 51.6° than to tip the orbit after you are up?</p>
+      <p class="answer">Answer: the plane is set at launch. Changing it later is a sideways burn against a fast ship, and that spends almost all the fuel the lesson is holding for the rest of the flight.</p>
+    </details>
+
+    <details id="orbital-manoeuvres">
+      <summary>9. Orbital manoeuvres</summary>
+      <h3>What you'll learn</h3>
+      <p>Forward and backward move the opposite end of the ellipse. Sideways at a node tilts the plane. A plane change is cheaper when you are slow.</p>
+      <h3>The idea</h3>
+      <p>The far point is apogee and the near point is perigee, as on NASA’s grades page. Burning forward at the near point raises the far point. Burning backward lowers it. Burning forward at the far point raises the near point.</p>
+      <p>The two places the path crosses the equator are the nodes. A sideways burn there tips the plane. The lesson shows the same tilt costing more at the low, fast end than higher up, where you are slower. Launch into the plane you want.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Orbital manoeuvres, then Fly the burns. The example plays four burns, then a tilt. Fast-forward does not speed this picture.</li>
+        <li>Watch forward at the bottom: the high end rises, the low end stays. Then backward: the high end falls.</li>
+        <li>Watch forward at the top: the low end rises. Then backward: the low end falls.</li>
+        <li>Press My turn. Pick 5°, 10°, or 20°. The sideways burn flies. On the question, tap “Slow, at a node.”</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Where is a plane change cheapest?</p>
+      <p class="answer">Answer: slow, at a node. Down low you are fast, so the same tilt costs more.</p>
+    </details>
+
+    <details id="polar">
+      <summary>10. Polar</summary>
+      <h3>What you'll learn</h3>
+      <p>A path that goes over both poles looks at a new strip of Earth each lap, because Earth turns underneath a line that stays put.</p>
+      <h3>The idea</h3>
+      <p>NASA Earthdata says a polar-orbiting platform is inclined nearly 90 degrees to the equator and travels from pole to pole as Earth rotates. A south launch from a site such as Vandenberg gets none of the eastward spin along the track, because the heading is across that spin, not along it. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Polar, then Watch the poles. The compass opens at Vandenberg. Watch launches south.</li>
+        <li>Press My turn. By hand starts due east. Turn left and Turn right move the compass by 15°. South is the heading over the pole.</li>
+        <li>Launch on that heading. Due east is not over the pole, and the line says so.</li>
+        <li>When the picture finishes, press Question and tap Polar.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why does the next lap see a different part of Earth?</p>
+      <p class="answer">Answer: the orbit line stays put in space, over both poles. Earth turns underneath it, so the ground has moved by the next pass.</p>
+    </details>
+
+    <details id="dawn-dusk">
+      <summary>11. Dawn-dusk</summary>
+      <h3>What you'll learn</h3>
+      <p>A sun-synchronous tilt, a little past the pole, lets Earth’s bulge walk the plane with the Sun, so each pass sees the same morning or evening light.</p>
+      <h3>The idea</h3>
+      <p>NASA Earthdata describes sun-synchronous polar orbits and gives NASA’s Aqua as an example, about 705 km up. The plane is chosen so it keeps a steady relationship with the Sun. Dawn-dusk means the pass stays on the day-night line. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <p class="meta">The lesson’s own picture is 786 km and about 98.6° (the launch line prints 98.5°). That pair is the game’s sun-synchronous value, not Aqua’s 705 km. Do not treat 98.6° as a number NASA published for this lesson.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Dawn-dusk, then Watch dawn-dusk. The example launches a little past the pole, slightly retrograde.</li>
+        <li>Press My turn. By hand starts near 90°. Turn left and Turn right move it by 0.5° until you are near the aim the picture asks for.</li>
+        <li>Launch. On the good tilt the line says the plane stays on the day-night line. A wrong tilt walks off the Sun.</li>
+        <li>Press Question and tap Sun-sync.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>What keeps a dawn-dusk plane with the Sun after launch?</p>
+      <p class="answer">Answer: Earth’s bulge, not the engine. The tilt is chosen so that walk matches the Sun. The wrong tilt drifts off the day-night line.</p>
+    </details>
+
+    <details id="to-the-moon">
+      <summary>12. To the Moon</summary>
+      <h3>What you'll learn</h3>
+      <p>A forward burn at Earth raises the far end out to the Moon. A second forward burn at the Moon raises the near end so you travel with the Moon.</p>
+      <h3>The idea</h3>
+      <p>Same rule as the long ellipse. Forward at the near end raises the far end. You then coast, engines off, and the Moon comes to that far end. Forward again raises the near end until you share the Moon’s path around Earth. Orbiting the Moon itself would be a backward burn at the closest pass. This lesson does not ask for that burn.</p>
+      <p>NASA’s grades page is the ellipse: far point, near point, and a coast between them with no engine. The lesson’s coast is about five days on its own clock.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap To the Moon, then Leave Earth. The picture stops before each burn and before the coast.</li>
+        <li>Pick a time, then press Earth burn, Watch coast, or Moon burn. Your time caps how fast the coast runs.</li>
+        <li>Press My turn. Hold to burn, forward, at Earth. Coast. Hold to burn, forward, at the Moon.</li>
+        <li>The steps on screen are “1 · Earth, forward”, “Coast”, and “2 · Moon, forward”.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>The lesson ends when you are traveling with the Moon. What burn did you not have to do?</p>
+      <p class="answer">Answer: the backward burn that would drop you into orbit around the Moon itself. This lesson stops on the path that travels with the Moon.</p>
+    </details>
+
+    <details id="burn-home">
+      <summary>13. Burn home</summary>
+      <h3>What you'll learn</h3>
+      <p>Slowing down is the way home. Backward at the Moon drops the near end onto Earth. Backward at Earth drops the far end.</p>
+      <h3>The idea</h3>
+      <p>You are traveling with the Moon, so you point backward, against your motion, and burn. That lowers the near end of the ellipse toward Earth. Coast, engines off. At Earth, backward again drops the far end, and you finish on an oval, not a circle.</p>
+      <p>Pointing the nose at Earth and thrusting is not the same thing. The burn has to be along your path. The lesson says slowing down is the way home.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Burn home, then Return. Pick a time, then press Slow at Moon, Watch coast, or Slow at Earth.</li>
+        <li>Press My turn. Hold the backward burn at the Moon.</li>
+        <li>Coast home. The path is already aimed.</li>
+        <li>Hold the backward burn at Earth. The far end drops. The lesson ends on that oval.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>You are at the Moon and you want the near end to fall toward Earth. Which way do you burn?</p>
+      <p class="answer">Answer: backward, against the way you are going. A forward burn would raise the far end. Slowing down drops the near end.</p>
+    </details>
+
+    <details id="to-mars">
+      <summary>14. To Mars</summary>
+      <h3>What you'll learn</h3>
+      <p>The same two forward burns, with the Sun in the middle, raise the far end out to Mars and then the near end so you travel with Mars.</p>
+      <h3>The idea</h3>
+      <p>Forward at Earth raises only the far end, out to where Mars will be. The coast is months, engines off, because the path was set when you left. Forward at Mars raises the near end. A burn in the middle of the coast does not aim the meeting.</p>
+      <p>NASA’s grades page is the shape again: you leave from the near point, coast the long ellipse, and arrive at the far point. The lesson’s clock calls that coast months.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap To Mars, then Leave for Mars. Pick a time, then press Leave Earth, Watch coast, or Arrive at Mars.</li>
+        <li>Press My turn. Hold forward at Earth. Only the far end rises.</li>
+        <li>Coast for months. Do not burn in the middle.</li>
+        <li>Hold forward at Mars. The near end rises and you travel with Mars.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>Why doesn’t a burn halfway along the coast fix a missed meeting with Mars?</p>
+      <p class="answer">Answer: the far end was set by the burn when you left Earth. The coast is already that ellipse. The arrival burn is at Mars, and it raises the near end.</p>
+    </details>
+
+    <details id="home-from-mars">
+      <summary>15. Home from Mars</summary>
+      <h3>What you'll learn</h3>
+      <p>Backward at Mars drops the near end onto Earth. Backward at Earth drops the far end, and you share Earth’s year.</p>
+      <h3>The idea</h3>
+      <p>Same homecoming as the Moon, on a bigger ellipse. Slowing at Mars lowers the near end to Earth’s path. Coast for months. Slowing at Earth lowers the far end. You then go around the Sun with Earth. A capture into a low orbit around Earth would be one more backward burn, or a dip into the air. This lesson stops when the second burn has dropped the far end.</p>
+      <h3>Try it now</h3>
+      <ol>
+        <li>Tap Home from Mars, then Come home. On this card, Come home is this lesson, not Belly flop.</li>
+        <li>Press My turn. Press Slow at Mars and hold Hold to burn.</li>
+        <li>Coast home for months. The button on the coast is Watch coast.</li>
+        <li>Press Slow at Earth and hold the backward burn. The lesson ends when that far end has dropped.</li>
+      </ol>
+      <h3>Check yourself</h3>
+      <p>After the burn at Earth, what path are you on?</p>
+      <p class="answer">Answer: you share Earth’s year around the Sun. You are not in a low circle around Earth unless you slow down once more.</p>
+    </details>
+
+    <details id="glossary">
+      <summary>Glossary</summary>
+      <p><strong>Apogee, apoapsis.</strong> The far end of an ellipse around Earth. NASA’s grades page uses apogee for a satellite of Earth.</p>
+      <p><strong>Perigee, periapsis.</strong> The near end of that ellipse.</p>
+      <p><strong>Prograde.</strong> Forward, along the way you are already going. The green mark. A forward burn raises the other end of the ellipse.</p>
+      <p><strong>Max Q.</strong> The moment the air pushes hardest. NASA’s STS-133 press kit keeps that push below about 580 pounds per square foot by throttling the main engines to 316,000 pounds, then throttling back up. This lesson uses that fraction, about 64% of the 490,847-pound normal vacuum thrust. Starship’s published timeline marks the time, not a throttle percent.</p>
+      <p><strong>Geostationary.</strong> 35,786 km over the equator, one lap in one sidereal day, so the satellite hangs over one spot. NASA Earthdata.</p>
+      <p><strong>Inclination.</strong> How far the plane is tipped from the equator. The station’s is 51.6°. A polar path is nearly 90°.</p>
+      <p><strong>Time warp.</strong> 1×, 4×, 16×, 32×, or 64×. Your button wins over Example, Autopilot, and the auto clock until you press Auto.</p>
+      <p><strong>Throttle.</strong> How hard the engines push, from off to full. You can set it on the way up. The example eases it at Max Q unless you have taken it.</p>
+    </details>
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-an-orbit-grades-5-8/">NASA, What Is an Orbit? (Grades 5–8)</a></li>
+      <li><a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a> — 35,786 km, low and medium bands, polar and sun-synchronous, Aqua about 705 km, Galileo 23,222 km</li>
+      <li><a href="https://www.nasa.gov/international-space-station-frequently-asked-questions/">NASA, International Space Station FAQ</a> — inclination 51.6°</li>
+      <li><a href="https://www.nasa.gov/faqs-the-international-space-station-transition-plan/">NASA, ISS Transition Plan FAQ</a> — about 415 km, roughly one to two years without reboosts</li>
+      <li><a href="https://ssd.jpl.nasa.gov/api/horizons.api?format=text&amp;COMMAND=%27399%27&amp;EPHEM_TYPE=%27VECTORS&amp;CENTER=%2710%27&amp;START_TIME=%27JD%202451545.0%27&amp;STOP_TIME=%27JD%202451545.0%27&amp;REF_PLANE=%27ECLIPTIC%27&amp;REF_SYSTEM=%27J2000%27&amp;QUANTITIES=%2723%27">NASA/JPL Horizons, Earth</a> — equatorial radius 6378.137 km, rotation rate 7.292115×10⁻⁵ rad/s, sidereal day 23.934 hours</li>
+      <li><a href="https://www.nasa.gov/wp-content/uploads/2023/05/491387main-sts-133-press-kit.pdf">NASA STS-133 press kit</a> — Max Q, 580 psf, 316,000 lbf and 490,847 lbf</li>
+      <li><a href="https://www.spacex.com/launches/starship-flight-15">SpaceX, Starship Flight 15</a> — Max Q called at T+00:00:58, no throttle percent</li>
+      <li><a href="https://www.spacex.com/vehicles/starship/">SpaceX, Starship</a></li>
+    </ul>
+  </main>
+  <footer>Aphelion 1.0. This page is the course the mission buttons open. Brand names in the lessons stay as the game writes them.</footer>
+</body>
+</html>
