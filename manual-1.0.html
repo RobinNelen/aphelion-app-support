@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-aphelion-build="60">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Aphelion 1.0 manual</title>
   <link rel="icon" href="icon.png">
   <style>
     :root { color-scheme: dark; }
-    body { margin: 0; font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; color: #e8e6e1;
-      background: radial-gradient(1200px 600px at 50% -200px, #1d2433 0%, #0a0b0f 60%) fixed, #0a0b0f; }
+    html { font: -apple-system-body; -webkit-text-size-adjust: auto; }
+    html[data-text-size="xl"] { font-size: 1.2rem; }
+    html[data-text-size="xxl"] { font-size: 1.35rem; }
+    html[data-text-size="xxxl"] { font-size: 1.55rem; }
+    html[data-text-size="ax1"] { font-size: 1.7rem; }
+    html[data-text-size="ax2"] { font-size: 1.9rem; }
+    html[data-text-size="ax3"] { font-size: 2.15rem; }
+    html[data-text-size="ax4"] { font-size: 2.4rem; }
+    html[data-text-size="ax5"] { font-size: 2.7rem; }
+    body { margin: 0; font: inherit; line-height: 1.6; color: #e8e6e1;
+      background: radial-gradient(1200px 600px at 50% -200px, #1d2433 0%, #0a0b0f 60%) fixed, #0a0b0f;
+      padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+    img, svg.diagram { max-width: 100%; height: auto; }
     header { text-align: center; padding: 3rem 1.25rem 1rem; }
     header img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 10px 40px rgba(120,160,255,.25); }
     header .brand { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; letter-spacing: .02em; margin: .8rem 0 .2rem; color: #fff; }
@@ -32,7 +43,14 @@
     svg.diagram { width: 100%; max-width: 28rem; height: auto; display: block; margin: .6rem 0; background: #0e1116; border: 1px solid #22262f; border-radius: 12px; }
     .answer { color: #c8d7c2; }
     footer { text-align: center; color: #5f6675; font-size: .85rem; padding: 0 1rem 2.5rem; }
+    .read-online { margin: .8rem 0 0; }
+    .read-online a { display: inline-block; padding: .45rem 1rem; border-radius: 999px; background: #f1efe9; color: #0a0b0f; text-decoration: none; font-weight: 600; }
     @media (max-width: 480px) { main { margin: 1rem .75rem 2rem; padding: 1.25rem 1rem; } header { padding-top: 1.5rem; } }
+    @media (orientation: landscape) {
+      header { padding: 1rem 1rem .4rem; }
+      header img { width: 64px; height: 64px; }
+      main { margin: .75rem auto 1.5rem; padding: 1.25rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -48,6 +66,7 @@
   </header>
   <main>
     <h1>Aphelion 1.0</h1>
+    <p class="read-online"><a id="read-online" href="https://robinnelen.github.io/aphelion-app-support/manual-1.0.html">Read online</a></p>
     <p class="meta">Fifteen missions, in the order the game flies them. A new install opens on the first one, with the rocket in view. Numbers that are physics are cited. Numbers that are only the lesson are marked as what the screen says.</p>
 
     <h2>Contents</h2>
@@ -101,6 +120,7 @@
       <p>At the equator the ground already moves east. NASA/JPL lists Earth’s equatorial radius as 6378.137 km and its rotation rate as 7.292115×10⁻⁵ radians per second. Those two multiply to about 465 m/s. The screen’s “Earth 465 m/s E” is that eastward speed. <a href="https://ssd.jpl.nasa.gov/api/horizons.api?format=text&amp;COMMAND=%27399%27&amp;EPHEM_TYPE=%27VECTORS&amp;CENTER=%2710%27&amp;START_TIME=%27JD%202451545.0%27&amp;STOP_TIME=%27JD%202451545.0%27&amp;REF_PLANE=%27ECLIPTIC%27&amp;REF_SYSTEM=%27J2000%27&amp;QUANTITIES=%2723%27">NASA/JPL Horizons, Earth geophysical properties</a></p>
       <p>Max Q. The air pushes hardest here, so the engines ease off, then push again, so that push stays something the rocket can take. NASA’s STS-133 press kit says the main engines throttle to 316,000 pounds of thrust so dynamic pressure stays below about 580 pounds per square foot, then throttle back up. Normal operating level in a vacuum is 490,847 pounds. 316,000 / 490,847 is the fraction this lesson uses, about 64%. <a href="https://www.nasa.gov/wp-content/uploads/2023/05/491387main-sts-133-press-kit.pdf">NASA STS-133 press kit (PDF page 71)</a></p>
       <p class="meta">SpaceX times Max Q on Starship Flight 15 at T+00:00:58 and does not publish a throttle percent. The 64% figure is the Shuttle’s, not a Starship setting. The lesson does not copy the Shuttle’s 26-second and 60-second clock. It eases while dynamic pressure is above that 580 psf limit, then goes back to full. <a href="https://www.spacex.com/launches/starship-flight-15">SpaceX, Starship Flight 15</a></p>
+      <p>When you fly this one yourself, ease the throttle at Max Q. The example and Autopilot do that for you.</p>
       <h3>Try it now</h3>
       <ol>
         <li>Open First orbit. A fresh install is already there. The rocket is in the ship view.</li>
@@ -409,9 +429,19 @@
       if (!id) return;
       var el = document.getElementById(id);
       if (el && el.tagName === "DETAILS") el.open = true;
+      if (el && el.scrollIntoView) el.scrollIntoView();
+    }
+    function syncReadOnline() {
+      var a = document.getElementById("read-online");
+      if (!a) return;
+      a.href = "https://robinnelen.github.io/aphelion-app-support/manual-1.0.html" + (location.hash || "");
     }
     openHashedChapter();
-    window.addEventListener("hashchange", openHashedChapter);
+    syncReadOnline();
+    window.addEventListener("hashchange", function () {
+      openHashedChapter();
+      syncReadOnline();
+    });
   </script>
 </body>
 </html>
