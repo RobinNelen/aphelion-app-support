@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-aphelion-build="60">
+<html lang="en" data-aphelion-build="62">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,13 @@
   <link rel="icon" href="icon.png">
   <style>
     :root { color-scheme: dark; }
-    html { font: -apple-system-body; -webkit-text-size-adjust: auto; }
+    /* Sizes come from ManualSheet, which reads the system Dynamic Type category.
+       -apple-system-body ignores a later font-size, so the page sets the size itself. */
+    html { font-family: -apple-system, system-ui, sans-serif; font-size: 1.0625rem; -webkit-text-size-adjust: 100%; }
+    html[data-text-size="xs"] { font-size: 0.82rem; }
+    html[data-text-size="s"] { font-size: 0.92rem; }
+    html[data-text-size="m"] { font-size: 1rem; }
+    html[data-text-size="l"] { font-size: 1.0625rem; }
     html[data-text-size="xl"] { font-size: 1.2rem; }
     html[data-text-size="xxl"] { font-size: 1.35rem; }
     html[data-text-size="xxxl"] { font-size: 1.55rem; }
@@ -27,7 +33,7 @@
     nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; }
     nav a { color: #e8e6e1; text-decoration: none; padding: .45rem 1rem; border-radius: 999px; border: 1px solid #2a2f3a; font-size: .95rem; }
     nav a.on, nav a:hover { background: #f1efe9; color: #0a0b0f; border-color: #f1efe9; }
-    main { max-width: 48rem; margin: 1.5rem auto 3rem; padding: 2rem 1.75rem; background: rgba(20,22,28,.75); border: 1px solid #22262f; border-radius: 20px; }
+    main { max-width: 48rem; margin: 1.5rem auto 3rem; padding: 2rem 1.75rem; background: rgba(20,22,28,.75); border: 1px solid #22262f; border-radius: 20px; overflow-wrap: break-word; }
     h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 .4rem; color: #fff; }
     h2 { font-size: 1.15rem; margin: 1.4rem 0 .35rem; color: #fff; }
     h3 { font-size: 1rem; margin: 1rem 0 .25rem; color: #fff; }
@@ -45,6 +51,12 @@
     footer { text-align: center; color: #5f6675; font-size: .85rem; padding: 0 1rem 2.5rem; }
     .read-online { margin: .8rem 0 0; }
     .read-online a { display: inline-block; padding: .45rem 1rem; border-radius: 999px; background: #f1efe9; color: #0a0b0f; text-decoration: none; font-weight: 600; }
+    .shot { margin: .75rem 0; min-width: 0; }
+    .shot img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #22262f; background: #0e1116; }
+    .shot figcaption { color: #c8d7c2; margin: .35rem 0 0; overflow-wrap: anywhere; }
+    .clip { position: absolute; left: -2400px; top: 0; width: 16rem; height: 3rem; overflow: hidden; }
+    .pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; align-items: start; }
+    @media (max-width: 640px) { .pair { grid-template-columns: minmax(0, 1fr); } }
     @media (max-width: 480px) { main { margin: 1rem .75rem 2rem; padding: 1.25rem 1rem; } header { padding-top: 1.5rem; } }
     @media (orientation: landscape) {
       header { padding: 1rem 1rem .4rem; }
@@ -57,7 +69,7 @@
   <header>
     <img src="icon.png" alt="Aphelion app icon">
     <div class="brand">Aphelion</div>
-    <p class="tag">The 1.0 course. One short chapter for each mission.</p>
+    <p class="tag">The 1.0 course. Controls, a glossary, and one chapter for each mission.</p>
     <nav>
       <a href="manual-1.0.html" class="on">Manual</a>
       <a href="privacy.html">Privacy</a>
@@ -67,11 +79,13 @@
   <main>
     <h1>Aphelion 1.0</h1>
     <p class="read-online"><a id="read-online" href="https://robinnelen.github.io/aphelion-app-support/manual-1.0.html">Read online</a></p>
+    <p id="open-chapter" class="meta">Chapter: contents</p>
+    <p id="text-size-live" class="clip">Text size l</p>
     <p class="meta">Fifteen missions, in the order the game flies them. A new install opens on the first one, with the rocket in view. Numbers that are physics are cited. Numbers that are only the lesson are marked as what the screen says.</p>
 
     <h2>Contents</h2>
     <ul class="toc">
-      <li><a href="#controls">Controls</a></li>
+      <li><a href="#controls">Your controls</a></li>
       <li><a href="#glossary">Glossary</a></li>
       <li><a href="#first-orbit">First orbit</a></li>
       <li><a href="#belly-flop">Belly flop</a></li>
@@ -91,16 +105,42 @@
     </ul>
 
     <details id="controls" open>
-      <summary>Controls</summary>
-      <p>iPhone, iPad, and Mac show the same buttons. On a Mac the app is the iPad app. A keyboard works there too.</p>
-      <h3>Throttle</h3>
-      <p>Ignite lights the engines at full. While they are lit the same button says Cut, and Cut sets the throttle to zero. On a phone or iPad a Throttle slider sits above Ignite. Drag it anywhere from off to full. On a Mac with a fine pointer, the slider is on the flight panel. Shift raises the throttle a little. Control lowers it. W or Z sets full. X cuts.</p>
-      <p>During the example and during Autopilot, the climb eases the engines once, around Max Q, then pushes again. If you move the slider, Shift, or Control, your setting wins until you turn Autopilot on again or start the example again. A hand flight does not ease for you. You fly the throttle yourself.</p>
-      <h3>Time warp, including while auto is running</h3>
-      <p>The buttons are 1×, 4×, 16×, 32×, and 64×. They work while Example, Autopilot, or the auto clock is running. Your pick wins over the auto pace until you press Auto. Auto gives the pacing back to the lesson. Nothing in the second half of a mission runs faster than the button you picked: coasts, station clocks, and the fast parts of a film stay at your rate or slower. A hold that is meant to sit still, such as a pause before a burn, stays still. Plus and minus on the keyboard set the same pick.</p>
-      <h3>The rest of the screen</h3>
-      <p>East and West tip the nose. The green mark is prograde, the way you are already going. Deploy lets a satellite go. Stage separates. Manual on the mission screen opens this page at that mission’s chapter. Manual in Settings opens this page too. Ship, Booster, Pad, and Orbit jump the camera. Flat looks along the orbit so the path lies flat, centred on Earth. A new flight opens on the ship, with the rocket in view, not on Flat. Pause stops the picture. My turn leaves the example and starts your try. Retry starts that try again. Hold to burn is the voyage button.</p>
-      <p>Settings only changes the numbers you read and the language. The rocket flies the same path. The choice stays on the device.</p>
+      <summary>Your controls</summary>
+      <p>iPhone, iPad, and Mac show the same buttons. On a Mac the app is the iPad app. Each picture is the real control, and the line under it is the whole explanation.</p>
+      <h3>Readouts</h3>
+      <figure class="shot" data-shot="ctrl-alt"><img src="figures/ctrl-alt.png" alt=""><figcaption>ALT is how high you are above the ground.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-ap"><img src="figures/ctrl-ap.png" alt=""><figcaption>AP is the high end of the path, the apoapsis.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-pe"><img src="figures/ctrl-pe.png" alt=""><figcaption>PE is the low end of the path, the periapsis.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-v"><img src="figures/ctrl-v.png" alt=""><figcaption>V is how fast you are moving.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-dv"><img src="figures/ctrl-dv.png" alt=""><figcaption>Δv is the speed change the fuel you still have can make.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-more"><img src="figures/ctrl-more.png" alt=""><figcaption>More opens the rest of the readouts on a phone.</figcaption></figure>
+      <h3>The three steps</h3>
+      <figure class="shot" data-shot="ctrl-phase"><img src="figures/ctrl-phase.png" alt=""><figcaption>The chips are 1 Burn up, 2 Cut and coast, and 3 Burn at the top.</figcaption></figure>
+      <h3>Flying</h3>
+      <figure class="shot" data-shot="ctrl-ignite"><img src="figures/ctrl-ignite.png" alt=""><figcaption>Ignite lights the engines, and the same button then says Cut and turns them off.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-west"><img src="figures/ctrl-west.png" alt=""><figcaption>West tips the nose against the way the ground already spins.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-east"><img src="figures/ctrl-east.png" alt=""><figcaption>East tips the nose with the ground, so you add to the speed you already have.</figcaption></figure>
+      <p>On a Mac, Shift raises the throttle a little, Control lowers it, W or Z sets full, and X cuts. A hand flight does not ease at Max Q for you.</p>
+      <h3>Time</h3>
+      <figure class="shot" data-shot="ctrl-warp-1"><img src="figures/ctrl-warp-1.png" alt=""><figcaption>1× runs the flight at normal speed.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-warp-4"><img src="figures/ctrl-warp-4.png" alt=""><figcaption>4× runs the flight at four times normal speed.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-warp-16"><img src="figures/ctrl-warp-16.png" alt=""><figcaption>16× runs the flight at sixteen times normal speed.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-warp-32"><img src="figures/ctrl-warp-32.png" alt=""><figcaption>32× runs the flight at thirty-two times normal speed.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-warp-64"><img src="figures/ctrl-warp-64.png" alt=""><figcaption>64× runs the flight at sixty-four times normal speed.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-warp-auto"><img src="figures/ctrl-warp-auto.png" alt=""><figcaption>Auto gives the pacing back to the lesson, and your own speed button wins until you press it.</figcaption></figure>
+      <h3>Camera</h3>
+      <figure class="shot" data-shot="ctrl-cam-ship"><img src="figures/ctrl-cam-ship.png" alt=""><figcaption>Ship keeps the camera on the rocket.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-cam-pad"><img src="figures/ctrl-cam-pad.png" alt=""><figcaption>Pad looks back at the launch pad.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-cam-orbit"><img src="figures/ctrl-cam-orbit.png" alt=""><figcaption>Orbit pulls out so the path around Earth fits on the screen.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-cam-flat"><img src="figures/ctrl-cam-flat.png" alt=""><figcaption>Flat looks along the orbit so the path lies flat, centred on Earth.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-reset"><img src="figures/ctrl-reset.png" alt=""><figcaption>Reset puts this flight back on the pad.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-centre"><img src="figures/ctrl-centre.png" alt=""><figcaption>The centre button keeps the camera following the rocket.</figcaption></figure>
+      <h3>The top row</h3>
+      <figure class="shot" data-shot="ctrl-pause"><img src="figures/ctrl-pause.png" alt=""><figcaption>Pause stops the picture, and the same button then says Play.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-mute"><img src="figures/ctrl-mute.png" alt=""><figcaption>Mute turns the sound off, and the same button then says Unmute.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-help"><img src="figures/ctrl-help.png" alt=""><figcaption>The question mark opens How to play.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-book"><img src="figures/ctrl-book.png" alt=""><figcaption>The book opens this manual: the mission’s chapter while you are in one, and the contents on the home screen and in the sandbox.</figcaption></figure>
+      <figure class="shot" data-shot="ctrl-gear"><img src="figures/ctrl-gear.png" alt=""><figcaption>The gear opens Settings, where you pick Metric, Webcast units, or US customary.</figcaption></figure>
     </details>
 
     <details id="first-orbit">
@@ -117,7 +157,7 @@
         <text x="248" y="74" fill="#e8e6e1" font-size="12">apogee</text>
       </svg>
       <p>NASA’s page for grades 5–8 says an orbit is a regular, repeating path, that orbits are ellipses, and that for a satellite of Earth the nearest point is perigee and the farthest is apogee. <a href="https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-an-orbit-grades-5-8/">nasa.gov, What Is an Orbit? (Grades 5–8)</a></p>
-      <p>At the equator the ground already moves east. NASA/JPL lists Earth’s equatorial radius as 6378.137 km and its rotation rate as 7.292115×10⁻⁵ radians per second. Those two multiply to about 465 m/s. The screen’s “Earth 465 m/s E” is that eastward speed. <a href="https://ssd.jpl.nasa.gov/api/horizons.api?format=text&amp;COMMAND=%27399%27&amp;EPHEM_TYPE=%27VECTORS&amp;CENTER=%2710%27&amp;START_TIME=%27JD%202451545.0%27&amp;STOP_TIME=%27JD%202451545.0%27&amp;REF_PLANE=%27ECLIPTIC%27&amp;REF_SYSTEM=%27J2000%27&amp;QUANTITIES=%2723%27">NASA/JPL Horizons, Earth geophysical properties</a></p>
+      <p>At the equator the ground already moves east. The app multiplies its rotation rate, 7.2921159×10⁻⁵ radians per second, by a 6,371 km Earth, which is 464.6 m/s, and the screen rounds that to 465 m/s E. NASA/JPL lists Earth’s equatorial radius as 6378.137 km and a rotation rate of 7.292115×10⁻⁵ radians per second. Those two multiply to 465.1 m/s, which rounds to the same 465. <a href="https://ssd.jpl.nasa.gov/api/horizons.api?format=text&amp;COMMAND=%27399%27&amp;EPHEM_TYPE=%27VECTORS&amp;CENTER=%2710%27&amp;START_TIME=%27JD%202451545.0%27&amp;STOP_TIME=%27JD%202451545.0%27&amp;REF_PLANE=%27ECLIPTIC%27&amp;REF_SYSTEM=%27J2000%27&amp;QUANTITIES=%2723%27">NASA/JPL Horizons, Earth geophysical properties</a></p>
       <p>Max Q. The air pushes hardest here, so the engines ease off, then push again, so that push stays something the rocket can take. NASA’s STS-133 press kit says the main engines throttle to 316,000 pounds of thrust so dynamic pressure stays below about 580 pounds per square foot, then throttle back up. Normal operating level in a vacuum is 490,847 pounds. 316,000 / 490,847 is the fraction this lesson uses, about 64%. <a href="https://www.nasa.gov/wp-content/uploads/2023/05/491387main-sts-133-press-kit.pdf">NASA STS-133 press kit (PDF page 71)</a></p>
       <p class="meta">SpaceX times Max Q on Starship Flight 15 at T+00:00:58 and does not publish a throttle percent. The 64% figure is the Shuttle’s, not a Starship setting. The lesson does not copy the Shuttle’s 26-second and 60-second clock. It eases while dynamic pressure is above that 580 psf limit, then goes back to full. <a href="https://www.spacex.com/launches/starship-flight-15">SpaceX, Starship Flight 15</a></p>
       <p>When you fly this one yourself, ease the throttle at Max Q. The example and Autopilot do that for you.</p>
@@ -128,6 +168,18 @@
         <li>Press My turn. The card says to pitch east, or press Autopilot. The strip reads “1 Burn up”, “2 Cut &amp; coast”, and “3 Burn at the top”.</li>
         <li>Go straight up, then tip east. Cut when the screen says CUT NOW, near a 275 km top. Coast.</li>
         <li>At the top, put the nose on the green prograde mark and burn when it says IGNITE NOW. That burn lifts the low end. Leave fuel in the ship.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="first-wrong"><img src="figures/first-wrong.png" alt=""><figcaption>Wrong: still coasting, 164 km up, high end 184 km, and the low end still inside the air.</figcaption></figure>
+        <figure class="shot" data-shot="first-right"><img src="figures/first-right.png" alt=""><figcaption>Right: after the burn at the top, altitude is 283 km, the high end 285 km, the low end 280 km, and speed 7.74 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Go straight up, then tip east. Sideways speed is what keeps you missing the ground.</li>
+        <li>Ease the throttle yourself at Max Q. The example does that for you. A hand flight does not.</li>
+        <li>Cut when the screen says CUT NOW, near a 275 km top, and coast. Wait until you reach the top (AP).</li>
+        <li>At the top, put the nose on the green prograde mark and burn when it says IGNITE NOW. Stop when the bottom has climbed. Leave at least 0.8 km/s in the ship.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>Why ease the engines at Max Q instead of pushing at full the whole way up?</p>
@@ -148,6 +200,18 @@
         <li>Press My turn. The card says Autopilot flies the belly and the flip. Watch the catch.</li>
         <li>The tower comes into the frame once the ship is low. The arms close. There are no legs.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="belly-wrong"><img src="figures/belly-wrong.png" alt=""><figcaption>Wrong: the ship is down on the water, and the tower reads 32 km short. The flip was at 1,200 m and the burn was 19 s.</figcaption></figure>
+        <figure class="shot" data-shot="belly-right"><img src="figures/belly-right.png" alt=""><figcaption>Right: caught by Tower 2. The card says the ship is at the tower.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Watch the example first. Use 4× while it is high, and 1× for the flip.</li>
+        <li>Keep the belly toward the wind. Nose up makes more drag. Nose down is the faster, harder fall.</li>
+        <li>The engines stay off while the air does the slowing. Flip when the ship is low, tail under the ship.</li>
+        <li>The tower arms close. This ship has no legs.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>Why does the ship come in sideways instead of nose-first?</p>
       <p class="answer">Answer: the belly is the broad face. It makes the drag and takes the heat. The engines only light at the end, to flip the tail down for the catch.</p>
@@ -164,7 +228,18 @@
         <li>Tap Deploy, then Open the bay. Start the example, or press My turn.</li>
         <li>Park the circle the same way as First orbit. Keep fuel in the ship.</li>
         <li>When the card says to, tap Deploy. The bay opens and the Starlinks leave one by one.</li>
-        <li>If you deploy before the orbit is ready, the card says to reach orbit first.</li>
+        <li>The Deploy button stays off until the low end is above the air and the engine is off.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="deploy-wrong"><img src="figures/deploy-wrong.png" alt=""><figcaption>Wrong: altitude is 2,908 km, speed is 16.98 km/s, the low end is 357 km, and the high end is no longer closed.</figcaption></figure>
+        <figure class="shot" data-shot="deploy-right"><img src="figures/deploy-right.png" alt=""><figcaption>Right: parked with every end at 275 km and speed 7.74 km/s, then the bay opens and a satellite leaves.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Park the same kind of circle as First orbit. Both ends need to clear the air, and the ship still needs fuel.</li>
+        <li>Cut the engine. Wait. Do not tap Deploy on the way up.</li>
+        <li>When the card says you are in orbit, tap Deploy once. The satellites drift apart along the path you already fly.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>What has to be true before Deploy does the job?</p>
@@ -174,7 +249,7 @@
     <details id="linger-up-high">
       <summary>4. Linger up high</summary>
       <h3>What you'll learn</h3>
-      <p>A long ellipse makes you slow at the far end, so you linger over the north. You do not round the path off.</p>
+      <p>A long ellipse makes you slow at the far end, so you linger over the north. A forward burn at that top then raises the bottom.</p>
       <h3>The idea</h3>
       <p>NASA’s grades page says a comet moves quickly when it is close to the Sun and slowly when it is far away. The same thing happens on a long ellipse around Earth: you are fast at the low end and slow at the high end. The slow part is the linger.</p>
       <p>Lower down, air still drags a spacecraft. NASA’s station transition FAQ says the station flies around 415 km, and that at that height its orbital lifetime is roughly one to two years if nobody reboosts it, depending on the Sun. <a href="https://www.nasa.gov/faqs-the-international-space-station-transition-plan/">NASA, ISS Transition Plan FAQ</a></p>
@@ -183,12 +258,25 @@
       <ol>
         <li>Tap Linger up high, then Ride the linger. You see two rings. Press “Then the ellipse”.</li>
         <li>The picture stops before the low circle, the bottom burn, and the coast. Pick a time, then press Watch, Bottom burn, or Watch path.</li>
-        <li>Press My turn. Hold the burn at the bottom. The top climbs. Coast. There is no burn at the top.</li>
+        <li>Press My turn. Hold the burn at the bottom. The top climbs. Coast until you are slow over the north. That linger is not the end.</li>
+        <li>At the top, nose forward and hold the burn, half before the top and half after. The bottom climbs. Nose back stretches the ellipse and drops the low end. The lesson finishes on a circle at about 39,900 km.</li>
         <li>Up high the line says you are slow over the north, and the ellipse stays.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="molniya-wrong"><img src="figures/molniya-wrong.png" alt=""><figcaption>Wrong: at the slow top the path is still a long ellipse. Speed is 1.49 km/s and the low end is still 500 km.</figcaption></figure>
+        <figure class="shot" data-shot="molniya-right"><img src="figures/molniya-right.png" alt=""><figcaption>Right: after the forward burn the path is a circle at 39,900 km and the speed is 2.94 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Hold a forward burn at the bottom. Only the top climbs, over the far north.</li>
+        <li>Coast. You are slow up there, so you linger. Choose a time, then watch that coast.</li>
+        <li>Wait until you reach the top. Nose forward, and burn half before the top and half after.</li>
+        <li>Nose back is the wrong way. The lesson is done when the path is a high circle.</li>
+      </ol>
       <h3>Check yourself</h3>
-      <p>Why not burn again at the top and make a circle?</p>
-      <p class="answer">Answer: the linger is the point. A circle would spend its time moving quickly all the way around. On the ellipse you are slow at the far end, over the north.</p>
+      <p>Why does this lesson burn again at the top?</p>
+      <p class="answer">Answer: nose forward there raises the bottom, and the lesson finishes when the path is a circle at about 39,900 km. Nose back does the opposite. A working Molniya satellite often stays on the ellipse, because the linger is the useful part. This lesson flies the next burn so you can see it.</p>
     </details>
 
     <details id="the-long-ellipse">
@@ -204,6 +292,17 @@
         <li>The picture stops before the low circle, each burn, and the coast. Pick a time, then press Watch, Bottom burn, Watch path, or Top burn. Your pick caps the fast coast.</li>
         <li>Press My turn. Hold the bottom burn. Only the high end rises. Coast. Do not burn in the middle.</li>
         <li>At the high end, burn forward again. The low end rises onto the gold line. The lesson finishes on that circle.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="gto-wrong"><img src="figures/gto-wrong.png" alt=""><figcaption>Wrong: the path is still a long ellipse, low end 250 km and high end 35,786 km, speed 1.74 km/s.</figcaption></figure>
+        <figure class="shot" data-shot="gto-right"><img src="figures/gto-right.png" alt=""><figcaption>Right: after the forward burn the path is a circle at 35,786 km and the speed is 3.07 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Burn forward at the low end. Only the high end rises, out to 35,786 km.</li>
+        <li>Coast to that slow top. Wait until you are there.</li>
+        <li>Burn forward at the top so the low end climbs. Stop when the path is a circle on the geostationary ring.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>You are at the low end and you burn forward. Which end moves?</p>
@@ -224,6 +323,17 @@
         <li>Press Burn forward at the top. The low end rises to the belt.</li>
         <li>Press My turn, then Watch, Coach, or By hand. On the question, tap MEO and hold.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="meo-wrong"><img src="figures/meo-wrong.png" alt=""><figcaption>Wrong: at the top of the ellipse the speed is still 2.46 km/s, before the forward burn.</figcaption></figure>
+        <figure class="shot" data-shot="meo-right"><img src="figures/meo-right.png" alt=""><figcaption>Right: the path is on the navigation belt, 20,200 km up, at 3.87 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Burn forward at the bottom. The top climbs toward about 20,200 km.</li>
+        <li>Coast. Do not burn in the middle.</li>
+        <li>At the top, burn forward so the bottom climbs. One lap is then about twelve hours.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>Why is a lap in this belt much longer than a lap in low orbit?</p>
       <p class="answer">Answer: the path is a much bigger circle, and you are moving more slowly. NASA’s description of medium orbit is about a 12-hour lap.</p>
@@ -242,6 +352,17 @@
         <li>Pick Chemical apogee or Hall thruster before it flies.</li>
         <li>Burn forward at the bottom so the high end rises to 35,786 km. Coast. At the top, burn forward again. The path becomes the gold circle.</li>
         <li>Press My turn when you want to fly an engine yourself. The done line says it hangs on the gold line.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="geo-wrong"><img src="figures/geo-wrong.png" alt=""><figcaption>Wrong: still a low circle, 347 km up at 7.70 km/s. It is not hanging over one spot yet.</figcaption></figure>
+        <figure class="shot" data-shot="geo-right"><img src="figures/geo-right.png" alt=""><figcaption>Right: 35,786 km up, speed 3.07 km/s, one lap in 23.9 h, and the card says it hangs over one spot.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Stay on the equator. A chemical engine burns forward at the bottom, coasts, then burns forward at the top.</li>
+        <li>Wait for the top before the second burn. A late burn leaves the low end short.</li>
+        <li>Stop on the gold line. Tip the plane and the satellite nods instead of hanging.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>Why does a geostationary satellite not slide across the sky?</p>
@@ -262,6 +383,17 @@
         <li>By hand starts with the compass at 90°. Turn it until the line matches the station heading, then launch.</li>
         <li>When the picture finishes, press Question and tap ISS 51.6°.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="tilt-wrong"><img src="figures/tilt-wrong.png" alt=""><figcaption>Wrong: after the costly way the readout is 347 km and 7.70 km/s. You have 0.76 km/s, the turn took 3.42 km/s, and coming home needs 0.80 km/s. The station mark still says 51.6°.</figcaption></figure>
+        <figure class="shot" data-shot="tilt-right"><img src="figures/tilt-right.png" alt=""><figcaption>Right: the card says the plane matches the station. You and the station both read 51.6°. Altitude is 408 km and speed is 7.67 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Read the compass before you light the engines. The station’s plane is the heading the lesson shows.</li>
+        <li>Launch on that heading. The tilt is set on the way up.</li>
+        <li>A later sideways burn can still tip the plane, and it costs the reserve. The cheap choice is the launch direction.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>Why is it cheaper to launch toward 51.6° than to tip the orbit after you are up?</p>
       <p class="answer">Answer: the plane is set at launch. Changing it later is a sideways burn against a fast ship, and that spends almost all the fuel the lesson is holding for the rest of the flight.</p>
@@ -281,6 +413,17 @@
         <li>Watch forward at the top: the low end rises. Then backward: the low end falls.</li>
         <li>Press My turn. Pick 5°, 10°, or 20°. The sideways burn flies. On the question, tap “Slow, at a node.”</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="move-wrong"><img src="figures/move-wrong.png" alt=""><figcaption>Down low the plane is 8°, at 409 km and 7.67 km/s. The screen says ten degrees costs 1.34 km/s down low, or 1.20 km/s up high.</figcaption></figure>
+        <figure class="shot" data-shot="move-right"><img src="figures/move-right.png" alt=""><figcaption>Right: the line reads 10.0°. A sideways burn at the slow top costs 0.79 km/s, less than 3.79 km/s for the same tilt down low, at 412 km and 7.66 km/s.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>To change height, burn forward or backward at one end. That burn moves the other end.</li>
+        <li>To tilt the plane, burn sideways where the path crosses the equator.</li>
+        <li>The cheap tilt is where you are moving slowly. Down low, the same tilt costs much more.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>Where is a plane change cheapest?</p>
       <p class="answer">Answer: slow, at a node. Down low you are fast, so the same tilt costs more.</p>
@@ -298,6 +441,17 @@
         <li>Press My turn. By hand starts due east. Turn left and Turn right move the compass by 15°. South is the heading over the pole.</li>
         <li>Launch on that heading. Due east is not over the pole, and the line says so.</li>
         <li>When the picture finishes, press Question and tap Polar.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="polar-wrong"><img src="figures/polar-wrong.png" alt=""><figcaption>Wrong: the picture marks 34.7°, and the line still says to launch south. The readout is 414 km, 7.66 km/s, and 93 min.</figcaption></figure>
+        <figure class="shot" data-shot="polar-right"><img src="figures/polar-right.png" alt=""><figcaption>Right: the card says the path goes over both poles. The readout is 818 km, 7.45 km/s, and 101 min.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Launch south from the west-coast pad, into a plane that goes over both poles.</li>
+        <li>The line of the path stays put. Earth turns underneath, so the next lap is a new strip.</li>
+        <li>Do not spend the fuel turning the plane afterward. The launch direction is the tilt.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>Why does the next lap see a different part of Earth?</p>
@@ -318,6 +472,17 @@
         <li>Launch. On the good tilt the line says the plane stays on the day-night line. A wrong tilt walks off the Sun.</li>
         <li>Press Question and tap Sun-sync.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="sso-wrong"><img src="figures/sso-wrong.png" alt=""><figcaption>Wrong: the tilt reads 90.0°, and the line says to tip just past the pole.</figcaption></figure>
+        <figure class="shot" data-shot="sso-right"><img src="figures/sso-right.png" alt=""><figcaption>Right: 786 km up, speed 7.46 km/s, one lap in 100 min. The card says every pass keeps the same light.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Watch the plane. It is not quite over the poles.</li>
+        <li>The engines do not chase the Sun. Earth’s bulge walks the plane.</li>
+        <li>Dawn-dusk keeps the same morning or evening light on every pass.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>What keeps a dawn-dusk plane with the Sun after launch?</p>
       <p class="answer">Answer: Earth’s bulge, not the engine. The tilt is chosen so that walk matches the Sun. The wrong tilt drifts off the day-night line.</p>
@@ -336,6 +501,17 @@
         <li>Pick a time, then press Earth burn, Watch coast, or Moon burn. Your time caps how fast the coast runs.</li>
         <li>Press My turn. Hold to burn, forward, at Earth. Coast. Hold to burn, forward, at the Moon.</li>
         <li>The steps on screen are “1 · Earth, forward”, “Coast”, and “2 · Moon, forward”.</li>
+      </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="moon-wrong"><img src="figures/moon-wrong.png" alt=""><figcaption>Wrong: speed is 10.77 km/s, the clock reads 13.2 d, and the far end is 458,028 km.</figcaption></figure>
+        <figure class="shot" data-shot="moon-right"><img src="figures/moon-right.png" alt=""><figcaption>Right: burn 1, forward at Earth. Altitude 700 km, speed 8.38 km/s, one lap in 2.1 h, and the far end is 3,374 km.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Burn forward at Earth. Only the far end rises, out to the Moon.</li>
+        <li>Coast. There is no burn in the middle. Pointing the nose at the Moon does not do this job.</li>
+        <li>At the far end, burn forward so the near end rises and you travel with the Moon.</li>
       </ol>
       <h3>Check yourself</h3>
       <p>The lesson ends when you are traveling with the Moon. What burn did you not have to do?</p>
@@ -356,6 +532,17 @@
         <li>Coast home. The path is already aimed.</li>
         <li>Hold the backward burn at Earth. The far end drops. The lesson ends on that oval.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="moonhome-wrong"><img src="figures/moonhome-wrong.png" alt=""><figcaption>Wrong: altitude still reads 700 km, speed is 139.67 km/s, and the clock is 9.7 d.</figcaption></figure>
+        <figure class="shot" data-shot="moonhome-right"><img src="figures/moonhome-right.png" alt=""><figcaption>Right: backward at the Moon. Altitude 377,025 km, speed 1.02 km/s, and the clock reads 27.5 d. The line says the near end falls toward Earth.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>You start already traveling with the Moon. Nose behind you.</li>
+        <li>Burn backward at the Moon so the near end falls toward Earth. Then coast.</li>
+        <li>Burn backward at Earth so the far end drops. This lesson stops on that oval, not on a tight circle.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>You are at the Moon and you want the near end to fall toward Earth. Which way do you burn?</p>
       <p class="answer">Answer: backward, against the way you are going. A forward burn would raise the far end. Slowing down drops the near end.</p>
@@ -375,6 +562,17 @@
         <li>Coast for months. Do not burn in the middle.</li>
         <li>Hold forward at Mars. The near end rises and you travel with Mars.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="mars-wrong"><img src="figures/mars-wrong.png" alt=""><figcaption>Wrong: speed is 33.21 km/s, the clock reads 555.1 d, and the far end is 1.6 AU. The ship is still 0.00 AU from Earth.</figcaption></figure>
+        <figure class="shot" data-shot="mars-right"><img src="figures/mars-right.png" alt=""><figcaption>Right: forward at Earth. The ship is 0.00 AU from Earth, speed 29.86 km/s, and the clock reads 368.0 d. Nose ahead raises only the far end.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Burn forward at Earth. The far end rises to the distance Mars orbits the Sun.</li>
+        <li>Coast for months. Choose a faster clock if you want to watch it. Do not burn in the middle.</li>
+        <li>At Mars, burn forward so the near end rises and you travel with Mars.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>Why doesn’t a burn halfway along the coast fix a missed meeting with Mars?</p>
       <p class="answer">Answer: the far end was set by the burn when you left Earth. The coast is already that ellipse. The arrival burn is at Mars, and it raises the near end.</p>
@@ -393,6 +591,17 @@
         <li>Coast home for months. The button on the coast is Watch coast.</li>
         <li>Press Slow at Earth and hold the backward burn. The lesson ends when that far end has dropped.</li>
       </ol>
+      <h3>Wrong and right</h3>
+      <div class="pair">
+        <figure class="shot" data-shot="marshome-wrong"><img src="figures/marshome-wrong.png" alt=""><figcaption>Wrong: still 1.59 AU from Earth, speed 20.65 km/s, and the clock reads 481.2 d.</figcaption></figure>
+        <figure class="shot" data-shot="marshome-right"><img src="figures/marshome-right.png" alt=""><figcaption>Right: backward at Mars. The ship is 1.59 AU from Earth, speed 24.13 km/s, the clock reads 687.0 d, and the far end is 1.5 AU.</figcaption></figure>
+      </div>
+      <h3>How to get it right</h3>
+      <ol>
+        <li>Burn backward at Mars. The near end drops onto Earth’s distance from the Sun.</li>
+        <li>Coast home. The button on the coast is for watching, not for another burn.</li>
+        <li>Burn backward at Earth. The far end drops, and you go around the Sun with Earth.</li>
+      </ol>
       <h3>Check yourself</h3>
       <p>After the burn at Earth, what path are you on?</p>
       <p class="answer">Answer: you share Earth’s year around the Sun. You are not in a low circle around Earth unless you slow down once more.</p>
@@ -400,14 +609,45 @@
 
     <details id="glossary">
       <summary>Glossary</summary>
-      <p><strong>Apogee, apoapsis.</strong> The far end of an ellipse around Earth. NASA’s grades page uses apogee for a satellite of Earth.</p>
-      <p><strong>Perigee, periapsis.</strong> The near end of that ellipse.</p>
-      <p><strong>Prograde.</strong> Forward, along the way you are already going. The green mark. A forward burn raises the other end of the ellipse.</p>
-      <p><strong>Max Q.</strong> The moment the air pushes hardest. NASA’s STS-133 press kit keeps that push below about 580 pounds per square foot by throttling the main engines to 316,000 pounds, then throttling back up. This lesson uses that fraction, about 64% of the 490,847-pound normal vacuum thrust. Starship’s published timeline marks the time, not a throttle percent.</p>
-      <p><strong>Geostationary.</strong> 35,786 km over the equator, one lap in one sidereal day, so the satellite hangs over one spot. NASA Earthdata.</p>
-      <p><strong>Inclination.</strong> How far the plane is tipped from the equator. The station’s is 51.6°. A polar path is nearly 90°.</p>
+      <p>Written for a teenager. A number is either what this app calculates, or it is from NASA or SpaceX, and the source is named. The screen’s own lesson targets are named as what the screen says.</p>
+      <p><strong>Altitude, ALT.</strong> Height above the ground. The app measures it from a round Earth whose radius is 6,371 km, centre to surface. The Kármán line in this app is 100 km. That is legal space, not a parking orbit.</p>
+      <p><strong>Velocity, V.</strong> How fast you are moving, and which way. The V readout is the speed. Direction is the nose and the green mark.</p>
+      <p><strong>Orbital speed.</strong> The speed of a circle at a given height. The app uses μ = 398,602.5 km³/s² and a 6,371 km Earth, and the circle speed is the square root of μ divided by (6,371 plus the height). At 275 km that is 7.744 km/s. At 408 km it is 7.668 km/s. At 20,200 km it is 3.873 km/s. At 35,786 km it is 3.075 km/s.</p>
+      <p><strong>Apoapsis, apogee, AP.</strong> The high end of an ellipse. NASA’s grades page uses apogee for a satellite of Earth. <a href="https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-an-orbit-grades-5-8/">nasa.gov, What Is an Orbit? (Grades 5–8)</a></p>
+      <p><strong>Periapsis, perigee, PE.</strong> The low end of that ellipse. If PE is inside the air, the path hits Earth. This app treats 100 km as the edge of space, and First orbit asks for a low end of at least 220 km.</p>
+      <p><strong>Ellipse.</strong> The repeating path. A circle is an ellipse whose two ends match. NASA’s grades page says orbits are ellipses, close and fast, far and slow.</p>
+      <p><strong>Burn.</strong> The engines are on, so the path changes. Forward, along the green prograde mark, raises the other end of the ellipse. Backward, retrograde, lowers the other end.</p>
+      <p><strong>Coast.</strong> The engines are off. The path you already have is the path you keep, until the air or another burn changes it.</p>
+      <p><strong>Circularise.</strong> A forward burn at the high end that raises the low end until the two ends match. First orbit aims that circle near 275 km. The screen accepts a low end of at least 220 km, a high end under 700 km, and the two ends within 120 km of each other.</p>
+      <p><strong>Δv.</strong> The speed change left in the fuel, in km/s. First orbit wants 0.8 km/s still in the ship when the circle is done. Throttle does not change how much Δv the tank holds. It changes how fast you spend it.</p>
+      <p><strong>Throttle, THR.</strong> How hard the engines push, from off to full. The readout is that fraction in percent.</p>
+      <p><strong>Max Q, dynamic pressure, q.</strong> Dynamic pressure is one-half times the air density times the speed squared. The app stores it in kilopascals. Density comes from the US Standard Atmosphere 1976 table in the app. From 100 km up the readout prints VAC. Max Q is where that push is hardest on the way up. NASA’s STS-133 press kit says the main engines throttle to 316,000 pounds of thrust so the push stays below about 580 pounds per square foot, then throttle back up. Normal vacuum thrust is 490,847 pounds. 316,000 / 490,847 is 64.4%, and this app and this page call it about 64%. 580 pounds per square foot is 27.8 kPa in the unit the app already uses. <a href="https://www.nasa.gov/wp-content/uploads/2023/05/491387main-sts-133-press-kit.pdf">NASA STS-133 press kit (PDF page 71)</a></p>
+      <p class="meta">The about 64% figure is borrowed from the Space Shuttle, not from Starship. SpaceX times Max Q on Starship Flight 15 at T+00:00:58 and does not publish a throttle percent. <a href="https://www.spacex.com/launches/starship-flight-15">SpaceX, Starship Flight 15</a></p>
+      <p><strong>Prograde.</strong> Forward, the way you are already going. The green mark. A forward burn raises the other end of the ellipse.</p>
+      <p><strong>Retrograde.</strong> Backward, against the way you are going. A backward burn lowers the other end. That is how a deorbit starts.</p>
+      <p><strong>Deorbit.</strong> A backward burn that drops the low end into the air so you can come home. In this app the aim for that low end is 50 km. That 50 km is the lesson’s target, not a NASA number.</p>
+      <p><strong>Heatshield, TILE HEAT.</strong> The tiles on the belly take the heat of the fall. The app’s reference for a windward tile is 1,723 K, which is 1,450°C, on a belly at 60 km and 5.6 km/s. The code cites Chris Hadfield’s 2,600°F and a 2024 thermal analysis, doi:10.34133/space.0281. 2,600°F is 1,427°C. The app uses 1,723 K. The readout is the temperature the tiles are heading toward, and the skin lags behind it.</p>
+      <p><strong>TWR.</strong> Thrust divided by the rocket’s weight, then multiplied by the throttle. Above 1, the engines can lift the rocket off the pad.</p>
+      <p><strong>Inclination.</strong> How far the plane is tipped from the equator. The station button reads 51.6°. The lesson’s value is 51.64°, and the height it uses is 408 km. NASA’s station FAQ states 51.6°. NASA’s station transition FAQ says the station flies around 415 km. <a href="https://www.nasa.gov/international-space-station-frequently-asked-questions/">NASA, International Space Station FAQ</a></p>
+      <p><strong>Geostationary, GEO.</strong> 35,786 km over the equator. One lap takes the same time Earth takes to turn relative to the stars, so the satellite hangs over one spot. The app’s period at that height is 23.93 hours, and the orbit line prints 23 h 56 m. NASA Earthdata states 35,786 km. <a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/orbits">NASA Earthdata, Orbits</a></p>
+      <p><strong>Sidereal day.</strong> One turn of Earth relative to the stars, 23.934 hours on the NASA/JPL Horizons page this manual already cites. A solar day, noon to noon, is longer.</p>
+      <p><strong>Navigation belt, MEO.</strong> The app draws this belt at about 20,200 km, and the orbit line prints 11 h 58 min and 55°. The app’s circle speed there is 3.873 km/s, and its period formula gives 11.97 hours. NASA Earthdata calls medium Earth orbit the band from about 2,000 km to about 35,500 km. This page does not cite gps.gov. The 20,200 km figure is the height the screen draws.</p>
+      <p><strong>Low Earth orbit, LEO.</strong> NASA Earthdata says about 160 km to about 2,000 km. First orbit’s parking circle is near 275 km, inside that band.</p>
+      <p><strong>Polar.</strong> Over the north pole and then the south. The app’s polar line is 817 km, 90°, and it prints 101 min. The circle speed from the app’s formula at 817 km is 7.447 km/s.</p>
+      <p><strong>Sun-synchronous, dawn-dusk.</strong> A little past polar, so Earth’s bulge walks the plane about one degree a day. The app’s dawn-dusk line prints 786 km, 100.6 min, and 98.6°. The launch line in the lesson prints 98.5°. That pair is the game’s value. NASA Earthdata’s Aqua example is about 705 km, which is a different orbit.</p>
+      <p><strong>Ground speed.</strong> At the equator the app’s 7.2921159×10⁻⁵ radians per second times 6,371 km is 464.6 m/s, and the screen rounds it to 465 m/s E. The JPL product, 6,378.137 km times 7.292115×10⁻⁵, is 465.1 m/s and rounds to the same 465.</p>
       <p><strong>Time warp.</strong> 1×, 4×, 16×, 32×, or 64×. Your button wins over Example, Autopilot, and the auto clock until you press Auto.</p>
-      <p><strong>Throttle.</strong> How hard the engines push, from off to full. You can set it on the way up. The example eases it at Max Q unless you have taken it.</p>
+      <p><strong>Eccentricity, e.</strong> How stretched the ellipse is. A circle is 0. The screen shows e when it is not showing one of the other clocks.</p>
+      <p><strong>Period, T.</strong> How long one lap takes. At 275 km the app’s period formula gives 89.9 minutes. At the 408 km height this lesson uses for the station, it gives 92.6 minutes. The formula is in <code>orbit-moves.ts</code>, with μ = 398,600.4418 km³/s².</p>
+      <p><strong>T-Ap.</strong> Time until the high end. “now” means you are there. That is when the circularise burn wants to start.</p>
+      <p><strong>Node.</strong> Where the path crosses the equator. A sideways burn there tilts the plane, and it costs less when you are slow.</p>
+      <p><strong>Plane change.</strong> The app uses Δv = 2 v sin(Δi/2), the pure rotation at the speed you already have (<code>tilt-lesson.ts</code>). The lesson’s low circle for that sum is 347 km.</p>
+      <p><strong>Radial.</strong> Pointing out from the planet, or in toward it. The screen’s Rad button is that hold. It turns the ellipse. The size barely changes.</p>
+      <p><strong>Molniya.</strong> The lesson draws about 500 km by about 39,900 km, tipped 63.4° (<code>mol-lesson.ts</code>). Those three figures are the picture in the game. You are slow at the far end for the same reason NASA’s grades page gives for a comet.</p>
+      <p><strong>GTO.</strong> The long ellipse up to the geostationary ring. The screen starts it near 250 km and raises the top to 35,786 km.</p>
+      <p><strong>SINK.</strong> How fast the ship is dropping, late in the belly flop, once the air has already done the slowing. The screen shows it in m/s.</p>
+      <p><strong>Autopilot.</strong> The app flies the lesson. The points still count. It is not a second set of physics.</p>
+      <p><strong>Stage.</strong> The booster and the ship separate. The count of engines and the propellant loads the app shows are the ones on SpaceX’s Starship page: ship propellant 1,600 t and thrust 1,614 tf, booster propellant 3,650 t and thrust 8,240 tf, Raptor 250 tf. Dry mass is not on that page, so this glossary does not state one. <a href="https://www.spacex.com/vehicles/starship/">SpaceX, Starship</a></p>
     </details>
 
     <h2>Sources</h2>
@@ -426,10 +666,15 @@
   <script>
     function openHashedChapter() {
       var id = (location.hash || "").replace(/^#/, "");
-      if (!id) return;
+      var label = document.getElementById("open-chapter");
+      if (!id) {
+        if (label) label.textContent = "Chapter: contents";
+        return;
+      }
       var el = document.getElementById(id);
       if (el && el.tagName === "DETAILS") el.open = true;
       if (el && el.scrollIntoView) el.scrollIntoView();
+      if (label) label.textContent = el ? ("Chapter: " + id) : "Chapter: contents";
     }
     function syncReadOnline() {
       var a = document.getElementById("read-online");
